@@ -1,0 +1,4 @@
+[submodule "src/submodules/web-core"]
+	path = src/submodules/web-core
+	url = https://github.com/LetsUpgrade-Labs/web-core.git
+	branch = main

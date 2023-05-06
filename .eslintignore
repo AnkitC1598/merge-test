@@ -1,0 +1,6 @@
+.next
+.vercel
+.husky
+src/submodules/*
+node_modules
+build
