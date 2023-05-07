@@ -14,12 +14,13 @@ import "nprogress/nprogress.css"
 import { useEffect, useState } from "react"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import { Empty } from "~/layouts"
+import { Default, Empty } from "~/layouts"
 import "~/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 const Layouts = {
+	default: Default,
 	empty: Empty,
 }
 
@@ -36,17 +37,17 @@ Router.events.on("routeChangeError", () => nprogress.done())
 
 const AppWithQuery = ({ Component, pageProps }) => {
 	const router = useRouter()
-	const Layout = Layouts[Component.layout] ?? Layouts.empty
+	const Layout = Layouts[Component.layout] ?? Layouts.default
 
 	const [darkModeEnabled] = useDarkMode()
 
 	return (
 		<>
 			<Head>
-				<title>Custom LU Next App</title>
+				<title>Lisa</title>
 				<meta
 					name="description"
-					content="Custom LU Next App"
+					content="Lisa"
 				/>
 				<meta
 					name="viewport"
