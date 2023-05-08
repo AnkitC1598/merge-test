@@ -1,0 +1,8 @@
+export { default as ChapterIcon } from "./chapter"
+export { default as CourseIcon } from "./course"
+export { default as LiveIcon } from "./live"
+export { default as RecordedIcon } from "./recorded"
+export { default as RTEIcon } from "./rte"
+export { default as SubjectIcon } from "./subject"
+export { default as TermIcon } from "./term"
+export { default as TopicIcon } from "./topic"

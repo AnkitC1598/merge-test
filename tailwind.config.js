@@ -2,7 +2,11 @@
 const SharedTailwindConfig = require("./src/submodules/web-core/tailwind.config")
 
 const SharedTailwindConfigThemeExtend = SharedTailwindConfig.theme.extend
-const ExtendedTheme = {}
+const ExtendedTheme = {
+	width: {
+		excludeSidebarIcon: "calc(100vw - 62px)",
+	},
+}
 let MergedExtentedTheme = {}
 
 Object.keys(SharedTailwindConfigThemeExtend).forEach(key => {

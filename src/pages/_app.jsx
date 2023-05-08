@@ -1,5 +1,6 @@
 import { compMotionConfig } from "@/web-core/src/configs"
 import { useDarkMode } from "@/web-core/src/hooks"
+import CookieService from "@/web-core/src/services/cookieService"
 import queryClient from "@/web-core/src/services/queryClient"
 import "@/web-core/src/styles/globals.css"
 import { classNames, setDocHeight } from "@/web-core/src/utils"
@@ -14,7 +15,10 @@ import "nprogress/nprogress.css"
 import { useEffect, useState } from "react"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { useGetUser } from "~/hooks/queries/auth"
+import { useGetOrgInfo } from "~/hooks/queries/org"
 import { Default, Empty } from "~/layouts"
+import { useStore } from "~/store"
 import "~/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -37,9 +41,23 @@ Router.events.on("routeChangeError", () => nprogress.done())
 
 const AppWithQuery = ({ Component, pageProps }) => {
 	const router = useRouter()
+	const { userId, orgId } = useStore(store => ({
+		userId: store.user?._id ?? null,
+		orgId: store.orgInfo?.orgId ?? null,
+	}))
 	const Layout = Layouts[Component.layout] ?? Layouts.default
 
 	const [darkModeEnabled] = useDarkMode()
+
+	useGetUser()
+
+	useGetOrgInfo(
+		window.location.hostname === "localhost" ||
+			window.location.hostname.includes("ngrok") ||
+			window.location.hostname.includes("vercel")
+			? "afw.lisaapp.in"
+			: window.location.hostname
+	)
 
 	return (
 		<>
@@ -64,8 +82,8 @@ const AppWithQuery = ({ Component, pageProps }) => {
 					inter.className
 				)}
 			>
-				<div className="flex justify-center h-screen w-screen">
-					{router.isReady ? (
+				<div className="flex justify-start h-screen w-screen">
+					{router.isReady && !!userId && !!orgId ? (
 						<Layout
 							requires={Component.requires}
 							{...(Component.layoutProps ?? {})}
@@ -79,7 +97,7 @@ const AppWithQuery = ({ Component, pageProps }) => {
 										exit="exitState"
 										transition="transitionState"
 										variants={compMotionConfig}
-										className="h-full"
+										className="sm:py-8 py-4 min-h-full"
 									>
 										<Component
 											{...pageProps}
@@ -122,7 +140,25 @@ const App = props => {
 	useDarkMode()
 
 	useEffect(() => {
-		if (router.isReady) setReady(true)
+		if (router.isReady && window.location.pathname !== "/auth") {
+			const launchCode = router.query.launchCode
+			if (launchCode) {
+				CookieService.updateRefreshToken(launchCode)
+				router.replace({
+					pathname: router.pathname,
+					query: {},
+					shallow: true,
+				})
+				setReady(true)
+			} else if (!CookieService.getAccessToken()) {
+				if (
+					CookieService.getAccessToken() ||
+					CookieService.getRefreshToken()
+				) {
+					if (router.pathname !== "/") router.push("/")
+				} else window.location.href = "/auth"
+			} else setReady(true)
+		}
 
 		setDocHeight()
 		window.addEventListener("resize", setDocHeight)

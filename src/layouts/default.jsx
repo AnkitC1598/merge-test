@@ -1,3 +1,4 @@
+import { classNames } from "@/web-core/src/utils"
 import { Disclosure, Transition } from "@headlessui/react"
 import {
 	Bars3Icon,
@@ -7,19 +8,39 @@ import {
 	XMarkIcon,
 } from "@heroicons/react/20/solid"
 import Image from "next/image"
+import Link from "next/link"
 import { cloneElement } from "react"
+import { useStore } from "~/store"
 
 const Default = ({ children }) => {
+	const { sideBarOpen, dispatch } = useStore(store => ({
+		sideBarOpen: store.sideBarOpen,
+		dispatch: store.dispatch,
+	}))
+
 	return (
 		<>
-			<div className="flex flex-col lg:w-9/12 md:w-8/12 w-full mr-auto bg-neutral-50 dark:bg-neutral-800 border-r border-neutral-300 dark:border-neutral-700">
-				<Disclosure as="nav">
+			<div
+				className={classNames(
+					"@container flex flex-col bg-neutral-50 dark:bg-neutral-800 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500",
+					sideBarOpen
+						? "md:mr-auto md:w-8/12 lg:w-9/12 w-full"
+						: "sm:w-excludeSidebarIcon w-full"
+				)}
+			>
+				<Disclosure
+					as="nav"
+					className="relative"
+				>
 					{({ open }) => (
 						<>
-							<div className="px-4 sm:px-6 lg:px-8 shadow dark:shadow-slate-700">
+							<div className="px-4 sm:px-6 lg:px-8 shadow dark:shadow-neutral-700 relative z-30">
 								<div className="flex h-16 items-center justify-between">
 									<div className="flex items-center">
-										<div className="flex-shrink-0">
+										<Link
+											href="/"
+											className="flex-shrink-0"
+										>
 											<div className="h-12 w-28 aspect-video relative overflow-hidden">
 												<Image
 													className="block dark:hidden"
@@ -36,18 +57,27 @@ const Default = ({ children }) => {
 													priority
 												/>
 											</div>
-										</div>
+										</Link>
 									</div>
 									<div className="hidden sm:ml-6 sm:block">
 										<div className="flex items-center">
 											<button
 												type="button"
 												className="rounded-md bg-neutral-50 dark:bg-neutral-800 p-1 text-slate-700 dark:text-slate-200 hover:text-slate-800 dark:hover:text-slate-100 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+												onClick={() =>
+													dispatch({
+														type: "SET_STATE",
+														payload: {
+															sideBarOpen:
+																!sideBarOpen,
+														},
+													})
+												}
 											>
 												<span className="sr-only">
 													Focus Mode
 												</span>
-												{true ? (
+												{sideBarOpen ? (
 													<BoltIcon
 														className="h-6 w-6"
 														aria-hidden="true"
@@ -91,7 +121,7 @@ const Default = ({ children }) => {
 								leaveTo="transform opacity-0 scale-95"
 							>
 								<Disclosure.Panel className="sm:hidden">
-									<div className="border-t border-neutral-300 dark:border-neutral-700 pb-3 pt-4 shadow dark:shadow-slate-700">
+									<div className="border-t border-neutral-300 dark:border-neutral-700 pb-3 pt-4 shadow dark:shadow-neutral-700">
 										<div className="flex items-center px-5">
 											<div className="flex-shrink-0">
 												<div className="h-10 w-10 rounded-full relative overflow-hidden">
@@ -153,7 +183,7 @@ const Default = ({ children }) => {
 						</>
 					)}
 				</Disclosure>
-				<div className="h-navScreen sm:p-8 p-4">
+				<div className="flex-1 h-navScreen @sm:px-8 px-2 overflow-x-hidden overflow-y-scroll scrollbar">
 					{typeof children === "function"
 						? children()
 						: cloneElement(children, {})}
