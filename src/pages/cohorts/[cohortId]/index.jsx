@@ -4,7 +4,6 @@ import {
 	Bars3CenterLeftIcon,
 	BarsArrowUpIcon,
 	BookOpenIcon,
-	ClockIcon,
 	DocumentTextIcon,
 	MagnifyingGlassIcon,
 	PresentationChartBarIcon,
@@ -12,7 +11,6 @@ import {
 	TableCellsIcon,
 	VideoCameraIcon,
 } from "@heroicons/react/20/solid"
-import { differenceInMinutes } from "date-fns"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useMemo, useRef, useState } from "react"
@@ -25,14 +23,7 @@ import {
 	useGetOneCohort,
 } from "~/hooks/queries/curriculum"
 import { useStore } from "~/store"
-import {
-	ChapterIcon,
-	LiveIcon,
-	RTEIcon,
-	SubjectIcon,
-	TermIcon,
-	TopicIcon,
-} from "~/svgs"
+import { ChapterIcon, LiveIcon, RTEIcon, SubjectIcon, TermIcon } from "~/svgs"
 
 const hierarchyProps = {
 	term: {
@@ -222,7 +213,7 @@ const Curriculum = ({ hierarchy }) => {
 									)}
 								>
 									<span className="w-full">
-										{hierarchyData?.title ?? "Sessions"}
+										{hierarchyData?.title ?? ""}
 									</span>
 								</div>
 							</div>
@@ -290,13 +281,13 @@ const Curriculum = ({ hierarchy }) => {
 							</button>
 						</div>
 					</div>
-					<div className="p-4 h-full overflow-y-scroll scrollbar">
+					<div className="@container/curriculum p-4 h-full overflow-y-scroll scrollbar">
 						<div
 							className={classNames(
 								"gap-4",
 								viewMode === "list"
 									? "flex flex-col"
-									: "grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1"
+									: "grid @5xl/curriculum:grid-cols-5 @4xl/curriculum:grid-cols-4 @md/curriculum:grid-cols-3 @sm/curriculum:grid-cols-2 grid-cols-1"
 							)}
 						>
 							{filteredDatas && filteredDatas.length ? (
@@ -317,7 +308,7 @@ const Curriculum = ({ hierarchy }) => {
 										</p>
 										<Icon
 											className={classNames(
-												"absolute bottom-2 right-3 h-8 w-8 self-end group-hover:scale-110 transition-all duration-300",
+												"absolute bottom-2 right-0 h-1/3 aspect-square self-end group-hover:scale-110 transition-all duration-300",
 												colors.icon
 											)}
 										/>
@@ -357,8 +348,8 @@ const Session = () => {
 
 	const filteredSessions =
 		query === ""
-			? sessions ?? []
-			: sessions.filter(d =>
+			? sessions?.children ?? []
+			: sessions?.children.filter(d =>
 					d.title
 						.toLowerCase()
 						.replace(/\s+/g, "")
@@ -388,10 +379,62 @@ const Session = () => {
 								Sessions
 							</div>
 						</div>
+						<div className="flex space-x-2 items-center justify-end xl:w-auto w-full">
+							<div className="flex-1 flex rounded-md shadow-sm">
+								<div className="flex-1 relative flex items-stretch focus-within:z-10">
+									<div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+										<MagnifyingGlassIcon
+											className="h-5 w-5 text-slate-400 group-focus-within:text-slate-900"
+											aria-hidden="true"
+										/>
+									</div>
+									<input
+										type="search"
+										name="search"
+										id="search"
+										autoComplete="off"
+										className="block md:min-w-40 w-full rounded-md border-0 bg-white/5 py-2 pl-10 pr-3.5 shadow-sm ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 rounded-r-none"
+										placeholder="Search"
+										onChange={e => setQuery(e.target.value)}
+									/>
+								</div>
+								<button
+									type="button"
+									disabled
+									className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 bg-white/5 disabled:cursor-not-allowed"
+								>
+									<BarsArrowUpIcon
+										className="-ml-0.5 h-5 w-5 text-slate-400"
+										aria-hidden="true"
+									/>
+									Sort
+								</button>
+							</div>
+							<button
+								className="h-full p-2.5 ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 bg-white/5 rounded-md hover:shadow-md"
+								onClick={() =>
+									setViewMode(prev =>
+										prev === "list" ? "grid" : "list"
+									)
+								}
+							>
+								{viewMode === "list" ? (
+									<Bars3CenterLeftIcon
+										className="h-5 w-5 text-slate-400"
+										aria-hidden="true"
+									/>
+								) : (
+									<Squares2X2Icon
+										className="h-5 w-5 text-slate-400"
+										aria-hidden="true"
+									/>
+								)}
+							</button>
+						</div>
 					</div>
 					<div className="@container/session p-4 overflow-y-scroll scrollbar">
 						{filteredSessions && filteredSessions.length ? (
-							<div className="gap-4 grid @2xl/session:grid-cols-4 @md/session:grid-cols-3 @sm/session:grid-cols-2 grid-cols-1">
+							<div className="gap-4 grid @5xl/session:grid-cols-5 @4xl/session:grid-cols-4 @md/session:grid-cols-3 @sm/session:grid-cols-2 grid-cols-1">
 								<Sessions sessions={filteredSessions} />
 							</div>
 						) : (
@@ -428,10 +471,12 @@ const CohortDataWrapper = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentHierarchy])
 
-	return hierarchy !== "session" ? (
-		<Curriculum hierarchy={hierarchy} />
-	) : hierarchy === "session" ? (
-		<Session />
+	return hierarchy ? (
+		hierarchy !== "session" ? (
+			<Curriculum hierarchy={hierarchy} />
+		) : hierarchy === "session" ? (
+			<Session />
+		) : null
 	) : null
 }
 

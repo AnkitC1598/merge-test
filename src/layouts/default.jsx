@@ -183,7 +183,7 @@ const Default = ({ children }) => {
 						</>
 					)}
 				</Disclosure>
-				<div className="flex-1 h-navScreen @sm:px-8 px-2 overflow-x-hidden overflow-y-scroll scrollbar">
+				<div className="flex-1 h-navScreen @lg:px-8 px-2 overflow-x-hidden overflow-y-scroll scrollbar">
 					{typeof children === "function"
 						? children()
 						: cloneElement(children, {})}

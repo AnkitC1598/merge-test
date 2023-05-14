@@ -6,19 +6,17 @@ import { useStore } from "~/store"
 
 const useGetAllTerms = () => {
 	const router = useRouter()
-	const { orgId, dispatch } = useStore(store => ({
-		orgId: store.orgInfo?.orgId ?? null,
-		dispatch: store.dispatch,
-	}))
+	const { cohortId } = router.query
+	const dispatch = useStore(store => store.dispatch)
 	const type = "cohort"
 	const id = router.query.cohortId
 
 	const { data, isFetching } = useQuery(
-		["terms", { type, id, orgId }],
+		["terms", { type, id, cohortId }],
 		CurriculumQueries.getTerms,
 		{
 			retry: 0,
-			enabled: !!id && !!type && !!orgId,
+			enabled: !!id && !!type && !!cohortId,
 			onSuccess: () => {
 				dispatch({ type: "SET_LOADING", payload: false })
 			},

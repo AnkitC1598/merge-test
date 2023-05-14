@@ -28,9 +28,8 @@ const genId = (slug, currentHierarchy) => {
 const useGetAllSessions = () => {
 	const router = useRouter()
 	const cohortId = router.query?.cohortId ?? null
-	const { currentHierarchy, orgId, dispatch } = useStore(store => ({
+	const { currentHierarchy, dispatch } = useStore(store => ({
 		currentHierarchy: store.currentHierarchy,
-		orgId: store.orgInfo?.orgId ?? null,
 		dispatch: store.dispatch,
 	}))
 	const type = types[currentHierarchy]
@@ -42,11 +41,11 @@ const useGetAllSessions = () => {
 			: router.query.cohortId
 
 	const { data, isFetching } = useQuery(
-		["sessions", { orgId, cohortId, id, type }],
+		["sessions", { cohortId, id, type }],
 		CurriculumQueries.getSessions,
 		{
 			retry: 0,
-			enabled: !!orgId && !!cohortId && !!id && !!type,
+			enabled: !!cohortId && !!id && !!type,
 			onSuccess: () => {
 				dispatch({ type: "SET_LOADING", payload: false })
 			},

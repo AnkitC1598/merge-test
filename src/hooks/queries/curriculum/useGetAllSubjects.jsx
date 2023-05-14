@@ -26,9 +26,9 @@ const genId = (slug, currentHierarchy) => {
 
 const useGetAllSubjects = () => {
 	const router = useRouter()
-	const { currentHierarchy, orgId, dispatch } = useStore(store => ({
+	const { cohortId } = router.query
+	const { currentHierarchy, dispatch } = useStore(store => ({
 		currentHierarchy: store.currentHierarchy,
-		orgId: store.orgInfo?.orgId ?? null,
 		dispatch: store.dispatch,
 	}))
 	const type = types[currentHierarchy]
@@ -40,11 +40,11 @@ const useGetAllSubjects = () => {
 			: router.query.cohortId
 
 	const { data, isFetching } = useQuery(
-		["subjects", { type, id, orgId }],
+		["subjects", { type, id, cohortId }],
 		CurriculumQueries.getSubjects,
 		{
 			retry: 0,
-			enabled: !!id && !!type && !!orgId,
+			enabled: !!id && !!type && !!cohortId,
 			onSuccess: () => {
 				dispatch({ type: "SET_LOADING", payload: false })
 			},
