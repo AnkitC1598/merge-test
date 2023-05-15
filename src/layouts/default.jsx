@@ -1,31 +1,85 @@
+import SidebarView from "@/plugins/src/pages"
+import { usePluginsStore } from "@/plugins/src/store"
 import { classNames } from "@/web-core/src/utils"
-import { Disclosure, Transition } from "@headlessui/react"
-import {
-	Bars3Icon,
-	BellIcon,
-	BoltIcon,
-	BoltSlashIcon,
-	XMarkIcon,
-} from "@heroicons/react/20/solid"
+import { Disclosure } from "@headlessui/react"
+import { BoltIcon, BoltSlashIcon } from "@heroicons/react/20/solid"
 import Image from "next/image"
 import Link from "next/link"
-import { cloneElement } from "react"
+import { useRouter } from "next/router"
+import { cloneElement, useMemo } from "react"
 import { useStore } from "~/store"
+import packageJson from "../../package.json"
+
+const tabVisibility = {
+	default: ["chat", "profile", "settings"],
+	cohort: ["chat", "drive", "users", "profile", "settings"],
+	term: ["chat", "drive", "users", "profile", "settings"],
+	subject: ["chat", "drive", "users", "profile", "settings"],
+	chapter: [
+		"chat",
+		"discussions",
+		"drive",
+		"quiz",
+		"users",
+		"profile",
+		"settings",
+	],
+	session: [
+		"topics",
+		"chat",
+		"discussions",
+		"pastebin",
+		"drive",
+		"quiz",
+		"users",
+		"profile",
+		"settings",
+	],
+}
+
+const hierarchyRestrictions = {
+	ctsct: ["cohort", "term", "subject", "chapter", "session"],
+	cst: ["cohort", "subject", "session"],
+	ct: ["cohort", "session"],
+}
 
 const Default = ({ children }) => {
-	const { sideBarOpen, dispatch } = useStore(store => ({
-		sideBarOpen: store.sideBarOpen,
+	const router = useRouter()
+	const { user, currentHierarchy, dispatch } = useStore(store => ({
+		user: store.user,
+		currentHierarchy: store.currentHierarchy,
 		dispatch: store.dispatch,
 	}))
+	const sideBarOpen = usePluginsStore(store => store.sideBarOpen)
+
+	const enabledSections = useMemo(() => {
+		let currentHierarchyArray = hierarchyRestrictions[currentHierarchy]
+		if (currentHierarchyArray === undefined) return tabVisibility["default"]
+
+		currentHierarchyArray = currentHierarchyArray.slice(1)
+		let ids = {}
+		if (router.query.cohortId) ids["cohort"] = router.query.cohortId
+		if (currentHierarchyArray.length > 0 && router.query.slug) {
+			currentHierarchyArray.forEach((h, idx) => {
+				ids = {
+					...ids,
+					[h]: router.query.slug[idx] ?? null,
+				}
+			})
+		}
+		Object.keys(ids).forEach(key => ids[key] === null && delete ids[key])
+
+		return tabVisibility[Object.keys(ids).at(-1) ?? "default"]
+	}, [currentHierarchy, router])
 
 	return (
 		<>
 			<div
 				className={classNames(
-					"@container flex flex-col bg-neutral-50 dark:bg-neutral-800 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500",
+					"@container w-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
 					sideBarOpen
-						? "md:mr-auto md:w-8/12 lg:w-9/12 w-full"
-						: "sm:w-excludeSidebarIcon w-full"
+						? "md:w-8/12 lg:w-9/12"
+						: "sm:w-excludeSidebarIcon"
 				)}
 			>
 				<Disclosure
@@ -63,16 +117,7 @@ const Default = ({ children }) => {
 										<div className="flex items-center">
 											<button
 												type="button"
-												className="rounded-md bg-neutral-50 dark:bg-neutral-800 p-1 text-slate-700 dark:text-slate-200 hover:text-slate-800 dark:hover:text-slate-100 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
-												onClick={() =>
-													dispatch({
-														type: "SET_STATE",
-														payload: {
-															sideBarOpen:
-																!sideBarOpen,
-														},
-													})
-												}
+												className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
 											>
 												<span className="sr-only">
 													Focus Mode
@@ -91,8 +136,26 @@ const Default = ({ children }) => {
 											</button>
 										</div>
 									</div>
-									<div className="-mr-2 flex sm:hidden">
-										{/* Mobile menu button */}
+									<button
+										type="button"
+										className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+									>
+										<span className="sr-only">
+											Focus Mode
+										</span>
+										{sideBarOpen ? (
+											<BoltIcon
+												className="h-6 w-6"
+												aria-hidden="true"
+											/>
+										) : (
+											<BoltSlashIcon
+												className="h-6 w-6"
+												aria-hidden="true"
+											/>
+										)}
+									</button>
+									{/* <div className="-mr-2 flex sm:hidden">
 										<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 hover:bg-neutral-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 											<span className="sr-only">
 												Open main menu
@@ -109,10 +172,10 @@ const Default = ({ children }) => {
 												/>
 											)}
 										</Disclosure.Button>
-									</div>
+									</div> */}
 								</div>
 							</div>
-							<Transition
+							{/* <Transition
 								enter="transition ease-out duration-100"
 								enterFrom="transform opacity-0 scale-95"
 								enterTo="transform opacity-100 scale-100"
@@ -179,7 +242,7 @@ const Default = ({ children }) => {
 										</div>
 									</div>
 								</Disclosure.Panel>
-							</Transition>
+							</Transition> */}
 						</>
 					)}
 				</Disclosure>
@@ -189,6 +252,13 @@ const Default = ({ children }) => {
 						: cloneElement(children, {})}
 				</div>
 			</div>
+			<SidebarView
+				dispatchToApp={dispatch}
+				version={packageJson?.version}
+				userData={user}
+				enabledSections={enabledSections}
+				defaultSection={enabledSections[0]}
+			/>
 		</>
 	)
 }

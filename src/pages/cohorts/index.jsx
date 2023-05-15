@@ -40,7 +40,7 @@ const Cohorts = ({ preview = false }) => {
 					{preview ? (
 						<Link
 							href="/cohorts"
-							className="rounded-md bg-neutral-800 dark:bg-neutral-50 py-2 px-3 text-sm font-semibold text-slate-50 dark:text-slate-900 shadow hover:shadow-md hover:shadow-neutral-600 hover:bg-neutral-900 dark:hover:bg-neutral-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outlone-neutral-800 dark:focus-visible:outline-neutral-50 flex items-center transition duration-300 ease-in-out"
+							className="rounded-md bg-neutral-900 dark:bg-neutral-50 py-2 px-3 text-sm font-semibold text-slate-50 dark:text-slate-900 shadow hover:shadow-md hover:shadow-neutral-600 hover:bg-neutral-900 dark:hover:bg-neutral-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outlone-neutral-800 dark:focus-visible:outline-neutral-50 flex items-center transition duration-300 ease-in-out"
 						>
 							View More
 						</Link>
@@ -56,7 +56,7 @@ const Cohorts = ({ preview = false }) => {
 						{cohorts?.map(cohort => (
 							<div
 								key={cohort.cohort._id}
-								className="col-span-1 bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-300 dark:border-neutral-700 shadow hover:shadow-md dark:shadow-neutral-700 group"
+								className="col-span-1 rounded-md border border-neutral-300 dark:border-neutral-700 shadow hover:shadow-md dark:shadow-neutral-700 group"
 							>
 								<Link
 									href={`/cohorts/${cohort.cohort._id}`}

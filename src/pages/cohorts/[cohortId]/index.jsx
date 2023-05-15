@@ -1,3 +1,4 @@
+import Session from "@/content/src/pages"
 import { classNames } from "@/web-core/src/utils"
 import {
 	ArrowSmallLeftIcon,
@@ -153,7 +154,7 @@ const types = [
 	},
 ]
 
-const Curriculum = ({ hierarchy }) => {
+const CurriculumList = ({ hierarchy }) => {
 	const router = useRouter()
 	const overflowRef = useRef()
 	const [query, setQuery] = useState("")
@@ -187,7 +188,7 @@ const Curriculum = ({ hierarchy }) => {
 				</div>
 			) : (
 				<div className="h-full flex flex-col relative">
-					<div className="p-4 pt-0 bg-neutral-50 dark:bg-neutral-800 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+					<div className="p-4 pt-0 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 						<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 							<Link
 								href={router.asPath
@@ -327,7 +328,7 @@ const Curriculum = ({ hierarchy }) => {
 	)
 }
 
-const Session = () => {
+const SessionList = () => {
 	const router = useRouter()
 	const currentHierarchy = useStore(store => store.currentHierarchy)
 	const overflowRef = useRef()
@@ -364,7 +365,7 @@ const Session = () => {
 				</div>
 			) : (
 				<div className="h-full flex flex-col relative">
-					<div className="p-4 pt-0 bg-neutral-50 dark:bg-neutral-800 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+					<div className="p-4 pt-0 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 						<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 							<Link
 								href={router.asPath
@@ -465,19 +466,23 @@ const CohortDataWrapper = () => {
 	const currentHierarchy = useStore(store => store.currentHierarchy)
 
 	const hierarchy = useMemo(() => {
-		return hierarchyTypes[currentHierarchy][
-			router.query.slug ? router.query.slug?.length + 1 : 1
-		]
+		return (
+			hierarchyTypes[currentHierarchy][
+				router.query.slug ? router.query.slug?.length + 1 : 1
+			] ?? null
+		)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentHierarchy])
 
 	return hierarchy ? (
 		hierarchy !== "session" ? (
-			<Curriculum hierarchy={hierarchy} />
-		) : hierarchy === "session" ? (
-			<Session />
-		) : null
-	) : null
+			<CurriculumList hierarchy={hierarchy} />
+		) : (
+			<SessionList />
+		)
+	) : (
+		<Session currentHierarchy={currentHierarchy} />
+	)
 }
 
 const CohortId = () => (

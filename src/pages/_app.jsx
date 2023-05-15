@@ -78,7 +78,7 @@ const AppWithQuery = ({ Component, pageProps }) => {
 			</Head>
 			<main
 				className={classNames(
-					"select-none overflow-hidden relative isolate scrollbar-hide bg-neutral-50 dark:bg-neutral-800 text-slate-900 dark:text-slate-200",
+					"select-none overflow-hidden relative isolate scrollbar-hide bg-neutral-50 dark:bg-neutral-900 text-slate-900 dark:text-slate-200",
 					inter.className
 				)}
 			>
@@ -97,7 +97,7 @@ const AppWithQuery = ({ Component, pageProps }) => {
 										exit="exitState"
 										transition="transitionState"
 										variants={compMotionConfig}
-										className="sm:py-8 py-4 min-h-full"
+										className="sm:py-8 py-4 min-h-full flex flex-col"
 									>
 										<Component
 											{...pageProps}
@@ -109,7 +109,7 @@ const AppWithQuery = ({ Component, pageProps }) => {
 						</Layout>
 					) : (
 						<>
-							<div className="w-full px-2 lg:px-16 xl:px-20 bg-neutral-50 dark:bg-neutral-800 text-slate-900 dark:text-slate-200 flex items-center justify-center">
+							<div className="w-full px-2 lg:px-16 xl:px-20 bg-neutral-50 dark:bg-neutral-900 text-slate-900 dark:text-slate-200 flex items-center justify-center">
 								Loading...
 							</div>
 						</>
@@ -171,13 +171,13 @@ const App = props => {
 			{ready ? (
 				<AppWithQuery {...props} />
 			) : (
-				<div className="h-screen w-screen flex items-center justify-center bg-white dark:bg-neutral-800 text-slate-900 dark:text-slate-200">
+				<div className="h-screen w-screen flex items-center justify-center bg-white dark:bg-neutral-900 text-slate-900 dark:text-slate-200">
 					<span>Loading...</span>
 				</div>
 			)}
 			{process.env.NODE_ENV === "development" && (
 				<ReactQueryDevtools
-					position="bottom-right"
+					position="bottom-left"
 					initialIsOpen={true}
 				/>
 			)}
