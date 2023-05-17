@@ -158,9 +158,7 @@ const CurriculumList = ({ hierarchy }) => {
 	const router = useRouter()
 	const overflowRef = useRef()
 	const [query, setQuery] = useState("")
-	const [viewMode, setViewMode] = useState(
-		hierarchy === "session" ? "list" : "grid"
-	)
+	const [viewMode, setViewMode] = useState("grid")
 
 	const {
 		icon: Icon,
@@ -188,7 +186,7 @@ const CurriculumList = ({ hierarchy }) => {
 				</div>
 			) : (
 				<div className="h-full flex flex-col relative">
-					<div className="p-4 pt-0 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+					<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 						<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 							<Link
 								href={router.asPath
@@ -341,10 +339,6 @@ const SessionList = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentHierarchy])
 
-	const [viewMode, setViewMode] = useState(
-		hierarchy === "session" ? "list" : "grid"
-	)
-
 	const { data: sessions, isFetching } = useGetAllSessions()
 
 	const filteredSessions =
@@ -365,7 +359,7 @@ const SessionList = () => {
 				</div>
 			) : (
 				<div className="h-full flex flex-col relative">
-					<div className="p-4 pt-0 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+					<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 						<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 							<Link
 								href={router.asPath
@@ -411,26 +405,6 @@ const SessionList = () => {
 									Sort
 								</button>
 							</div>
-							<button
-								className="h-full p-2.5 ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 bg-white/5 rounded-md hover:shadow-md"
-								onClick={() =>
-									setViewMode(prev =>
-										prev === "list" ? "grid" : "list"
-									)
-								}
-							>
-								{viewMode === "list" ? (
-									<Bars3CenterLeftIcon
-										className="h-5 w-5 text-slate-400"
-										aria-hidden="true"
-									/>
-								) : (
-									<Squares2X2Icon
-										className="h-5 w-5 text-slate-400"
-										aria-hidden="true"
-									/>
-								)}
-							</button>
 						</div>
 					</div>
 					<div className="@container/session p-4 overflow-y-scroll scrollbar">
@@ -463,7 +437,10 @@ const CohortInfoWrapper = ({ children }) => {
 
 const CohortDataWrapper = () => {
 	const router = useRouter()
-	const currentHierarchy = useStore(store => store.currentHierarchy)
+	const { user, currentHierarchy } = useStore(store => ({
+		user: store.user,
+		currentHierarchy: store.currentHierarchy,
+	}))
 
 	const hierarchy = useMemo(() => {
 		return (
@@ -481,7 +458,10 @@ const CohortDataWrapper = () => {
 			<SessionList />
 		)
 	) : (
-		<Session currentHierarchy={currentHierarchy} />
+		<Session
+			userData={user}
+			currentHierarchy={currentHierarchy}
+		/>
 	)
 }
 

@@ -97,7 +97,7 @@ const AppWithQuery = ({ Component, pageProps }) => {
 										exit="exitState"
 										transition="transitionState"
 										variants={compMotionConfig}
-										className="sm:py-8 py-4 min-h-full flex flex-col"
+										className="sm:pb-8 pb-4 min-h-full flex flex-col"
 									>
 										<Component
 											{...pageProps}

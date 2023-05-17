@@ -28,7 +28,7 @@ const Cohorts = ({ preview = false }) => {
 				<div
 					className={classNames(
 						"flex gap-4 justify-between items-center",
-						preview ? "p-4" : ""
+						preview ? "p-4" : "sm:pt-8 pt-4"
 					)}
 				>
 					<div className="flex gap-2">
