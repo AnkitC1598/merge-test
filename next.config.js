@@ -6,6 +6,7 @@ const nextConfig = {
 		domains: [
 			"lucdn.letsupgrade.net",
 			"images.unsplash.com",
+			"source.unsplash.com",
 			"api.dicebear.com",
 			"t1.gstatic.com",
 			"static.lisaapp.in",

@@ -458,10 +458,12 @@ const CohortDataWrapper = () => {
 			<SessionList />
 		)
 	) : (
-		<Session
-			userData={user}
-			currentHierarchy={currentHierarchy}
-		/>
+		<div className="sm:pt-8 pt-4 flex-1 flex">
+			<Session
+				userData={user}
+				currentHierarchy={currentHierarchy}
+			/>
+		</div>
 	)
 }
 

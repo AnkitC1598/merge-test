@@ -258,6 +258,7 @@ const Default = ({ children }) => {
 				userData={user}
 				enabledSections={enabledSections}
 				defaultSection={enabledSections[0]}
+				currentHierarchy={currentHierarchy}
 			/>
 		</>
 	)
