@@ -691,7 +691,7 @@ const dummySessions = [
 	},
 ]
 
-const Sessions = ({ sessions = dummySessions }) => {
+const Sessions = ({ makeRoute = false, sessions = dummySessions }) => {
 	return sessions.length
 		? sessions.map(session => {
 				let type
@@ -711,6 +711,7 @@ const Sessions = ({ sessions = dummySessions }) => {
 						key={session._id}
 						type={type}
 						session={session}
+						makeRoute={makeRoute}
 					/>
 				)
 		  })

@@ -3,15 +3,38 @@ import { ClockIcon } from "@heroicons/react/20/solid"
 import { differenceInMinutes } from "date-fns"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { useMemo } from "react"
 import { TopicIcon } from "~/svgs"
 
-const SessionCard = ({ session, type }) => {
+const hierarchyTypes = {
+	ctsct: ["cohort", "term", "subject", "chapter", "session"],
+	cst: ["cohort", "subject", "session"],
+	ct: ["cohort", "session"],
+}
+
+const SessionCard = ({ session, type, makeRoute }) => {
 	const router = useRouter()
+
+	const href = useMemo(() => {
+		if (!makeRoute) return `${router.asPath}/${session._id}`
+		const hierarchy = session.cohort.type.map(t => t[0]).join("")
+		const hierarchyArr = hierarchyTypes[hierarchy]
+		let route = "/cohorts/"
+
+		hierarchyArr.forEach((h, i) => {
+			if (i === 0) route += `/${session.cohort._id}`
+			else if (i === hierarchyArr.length - 1) route += `/${session._id}`
+			else route += `/${session[h]._id}`
+		})
+
+		return route
+	}, [makeRoute, router.asPath, session])
+	console.debug(`🚀 ~ file: index.jsx:16 ~ href ~ href:`, href)
 
 	return (
 		<>
 			<Link
-				href={`${router.asPath}/${session._id}`}
+				href={href}
 				className={classNames(
 					"relative group md:aspect-video shadow hover:shadow-md dark:shadow-neutral-700 rounded-md border border-neutral-200 dark:border-neutral-700",
 					type.colors.card

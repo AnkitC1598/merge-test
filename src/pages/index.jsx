@@ -1,9 +1,15 @@
 import { Sessions } from "~/components/organisms"
 import { useStore } from "~/store"
 import Cohorts from "./cohorts"
+import { useGetDashboardSessions } from "~/hooks/queries/dashboard"
 
 const Home = () => {
 	const user = useStore(store => store.user)
+
+	const { data: upcoming, isFetching: fetchingUpcoming } =
+		useGetDashboardSessions({ type: "upcoming" })
+	const { data: recent, isFetching: fetchingRecent } =
+		useGetDashboardSessions({ type: "finished" })
 
 	return (
 		<>
@@ -16,26 +22,41 @@ const Home = () => {
 						Your dashboard is your go-to place to get started
 					</p>
 				</div>
-				<div className="flex flex-col rounded-md">
-					<p className="p-4 pb-0 text-sm leading-5 font-normal">
-						Upcoming
-					</p>
-					<div className="@container/session p-4">
-						<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[minmax(calc(20%_-_32px),_1fr)] @4xl:auto-cols-[minmax(calc(25%_-_32px),_1fr)] @xl:auto-cols-[minmax(calc(33%_-_32px),_1fr)] @sm:auto-cols-[minmax(calc(50%_-_32px),_1fr)] auto-cols-[minmax(calc(75%_-_32px),_1fr)] overflow-x-scroll scrollbar-hide">
-							<Sessions />
+				{fetchingUpcoming ? (
+					<>Loading...</>
+				) : upcoming.length ? (
+					<div className="flex flex-col rounded-md">
+						<p className="p-4 pb-0 text-sm leading-5 font-normal">
+							Upcoming
+						</p>
+
+						<div className="@container/session p-4">
+							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[minmax(calc(20%_-_32px),_1fr)] @4xl:auto-cols-[minmax(calc(25%_-_32px),_1fr)] @xl:auto-cols-[minmax(calc(33%_-_32px),_1fr)] @sm:auto-cols-[minmax(calc(50%_-_32px),_1fr)] auto-cols-[minmax(calc(75%_-_32px),_1fr)] overflow-x-scroll scrollbar-hide">
+								<Sessions
+									makeRoute
+									sessions={upcoming}
+								/>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="flex flex-col rounded-md">
-					<p className="p-4 pb-0 text-sm leading-5 font-normal">
-						Recents
-					</p>
-					<div className="@container/session p-4">
-						<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[minmax(calc(20%_-_32px),_1fr)] @4xl:auto-cols-[minmax(calc(25%_-_32px),_1fr)] @xl:auto-cols-[minmax(calc(33%_-_32px),_1fr)] @sm:auto-cols-[minmax(calc(50%_-_32px),_1fr)] auto-cols-[minmax(calc(75%_-_32px),_1fr)] overflow-x-scroll scrollbar-hide">
-							<Sessions />
+				) : null}
+				{fetchingRecent ? (
+					<>Loading...</>
+				) : recent.length ? (
+					<div className="flex flex-col rounded-md">
+						<p className="p-4 pb-0 text-sm leading-5 font-normal">
+							Recents
+						</p>
+						<div className="@container/session p-4">
+							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[minmax(calc(20%_-_32px),_1fr)] @4xl:auto-cols-[minmax(calc(25%_-_32px),_1fr)] @xl:auto-cols-[minmax(calc(33%_-_32px),_1fr)] @sm:auto-cols-[minmax(calc(50%_-_32px),_1fr)] auto-cols-[minmax(calc(75%_-_32px),_1fr)] overflow-x-scroll scrollbar-hide">
+								<Sessions
+									makeRoute
+									sessions={recent}
+								/>
+							</div>
 						</div>
 					</div>
-				</div>
+				) : null}
 				<Cohorts preview />
 			</div>
 		</>

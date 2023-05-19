@@ -60,7 +60,7 @@ const Cohorts = ({ preview = false }) => {
 							>
 								<Link
 									href={`/cohorts/${cohort.cohort._id}`}
-									className="flex flex-col gap-6 p-4 h-full w-full"
+									className="flex flex-col justify-between gap-6 p-4 h-full w-full"
 								>
 									<div className="flex flex-col gap-1">
 										<div className="text-sm leading-5 font-medium text-purple-500 dark:text-purple-300">
