@@ -59,7 +59,8 @@ const getCurrentLevel = (currentHierarchy, query) => {
 
 const Default = ({ children }) => {
 	const router = useRouter()
-	const { user, currentHierarchy, dispatch } = useStore(store => ({
+	const { orgInfo, user, currentHierarchy, dispatch } = useStore(store => ({
+		orgInfo: store.orgInfo,
 		user: store.user,
 		currentHierarchy: store.currentHierarchy,
 		dispatch: store.dispatch,
@@ -122,16 +123,16 @@ const Default = ({ children }) => {
 										>
 											<div className="h-12 w-28 aspect-video relative overflow-hidden">
 												<Image
-													className="block dark:hidden"
-													src="https://lucdn.letsupgrade.net/lu_Black_f2328beac0.png"
-													alt="Lisa"
+													className="block dark:hidden object-contain object-left"
+													src={orgInfo?.logo}
+													alt={orgInfo?.name}
 													fill
 													priority
 												/>
 												<Image
-													className="hidden dark:block"
-													src="https://lucdn.letsupgrade.net/lu_White_0f8c91d7a1.png"
-													alt="Lisa"
+													className="hidden dark:block object-contain object-left"
+													src={orgInfo?.logo}
+													alt={orgInfo?.name}
 													fill
 													priority
 												/>
