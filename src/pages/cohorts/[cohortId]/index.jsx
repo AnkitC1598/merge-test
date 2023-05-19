@@ -1,7 +1,6 @@
 import Session from "@/content/src/pages"
 import { classNames } from "@/web-core/src/utils"
 import {
-	ArrowSmallLeftIcon,
 	Bars3CenterLeftIcon,
 	BarsArrowUpIcon,
 	BookOpenIcon,
@@ -12,9 +11,11 @@ import {
 	TableCellsIcon,
 	VideoCameraIcon,
 } from "@heroicons/react/20/solid"
+import { ArrowSmallLeftIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useMemo, useRef, useState } from "react"
+import { Back } from "~/components/atoms"
 import { Sessions } from "~/components/organisms"
 import {
 	useGetAllChapters,
@@ -188,15 +189,7 @@ const CurriculumList = ({ hierarchy }) => {
 				<div className="h-full flex flex-col relative">
 					<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 						<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
-							<Link
-								href={router.asPath
-									.split("/")
-									.slice(0, -1)
-									.join("/")}
-								className="dark:bg-white/5 p-0.5 rounded-md group border border-neutral-300 dark:border-neutral-700"
-							>
-								<ArrowSmallLeftIcon className="h-9 w-9 text-slate-900 dark:text-slate-200" />
-							</Link>
+							<Back />
 							<div
 								ref={overflowRef}
 								className="overflow-hidden w-max"
@@ -361,15 +354,7 @@ const SessionList = () => {
 				<div className="h-full flex flex-col relative">
 					<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 						<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
-							<Link
-								href={router.asPath
-									.split("/")
-									.slice(0, -1)
-									.join("/")}
-								className="dark:bg-white/5 p-0.5 rounded-md group border border-neutral-300 dark:border-neutral-700"
-							>
-								<ArrowSmallLeftIcon className="h-9 w-9 text-slate-900 dark:text-slate-200" />
-							</Link>
+							<Back />
 							<div className="text-lg leading-8 font-medium">
 								Sessions
 							</div>
