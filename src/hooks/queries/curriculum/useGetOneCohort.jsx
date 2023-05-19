@@ -26,6 +26,12 @@ const useGetOneCohort = ({ disabled }) => {
 						currentHierarchy: resp.type.map(t => t[0]).join(""),
 					},
 				})
+				dispatch({
+					type: "SET_STATE",
+					payload: {
+						cohortTitle: resp.title,
+					},
+				})
 			},
 			onError: error => {
 				dispatch({ type: "SET_LOADING", payload: false })

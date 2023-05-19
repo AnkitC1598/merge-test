@@ -4,6 +4,7 @@ import { RectangleStackIcon } from "@heroicons/react/24/solid"
 import { format } from "date-fns"
 import Link from "next/link"
 import { useEffect } from "react"
+import { Breadcrumb } from "~/components/molecules"
 import { useGetAllCohorts } from "~/hooks/queries/curriculum"
 import { useStore } from "~/store"
 
@@ -17,8 +18,27 @@ const Cohorts = ({ preview = false }) => {
 			dispatch({ type: "SET_STATE", payload: { currentHierarchy: null } })
 	}, [dispatch, preview])
 
+	useEffect(() => {
+		dispatch({
+			type: "SET_STATE",
+			payload: {
+				currentHierarchy: null,
+			},
+		})
+		dispatch({
+			type: "SET_STATE",
+			payload: {
+				cohortTitle: null,
+			},
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	return (
 		<>
+			<div className="pt-4">
+				<Breadcrumb breadcrumbs={[{ label: "Cohorts" }]} />
+			</div>
 			<div
 				className={classNames(
 					"flex flex-col",

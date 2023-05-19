@@ -1,7 +1,8 @@
+import { Breadcrumb } from "~/components/molecules"
 import { Sessions } from "~/components/organisms"
+import { useGetDashboardSessions } from "~/hooks/queries/dashboard"
 import { useStore } from "~/store"
 import Cohorts from "./cohorts"
-import { useGetDashboardSessions } from "~/hooks/queries/dashboard"
 
 const Home = () => {
 	const user = useStore(store => store.user)
@@ -11,8 +12,27 @@ const Home = () => {
 	const { data: recent, isFetching: fetchingRecent } =
 		useGetDashboardSessions({ type: "finished" })
 
+	useEffect(() => {
+		dispatch({
+			type: "SET_STATE",
+			payload: {
+				currentHierarchy: null,
+			},
+		})
+		dispatch({
+			type: "SET_STATE",
+			payload: {
+				cohortTitle: null,
+			},
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	return (
 		<>
+			<div className="pt-4">
+				<Breadcrumb breadcrumbs={[]} />
+			</div>
 			<div className="sm:pt-8 pt-4 flex flex-col gap-8 justify-start">
 				<div className="flex flex-col gap-0.5">
 					<h1 className="text-2xl leading-8 font-semibold">

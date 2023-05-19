@@ -29,7 +29,6 @@ const SessionCard = ({ session, type, makeRoute }) => {
 
 		return route
 	}, [makeRoute, router.asPath, session])
-	console.debug(`🚀 ~ file: index.jsx:16 ~ href ~ href:`, href)
 
 	return (
 		<>
