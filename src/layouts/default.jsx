@@ -43,6 +43,20 @@ const hierarchyRestrictions = {
 	ct: ["cohort", "session"],
 }
 
+const getCurrentLevel = (currentHierarchy, query) => {
+	let currentHierarchyArray = hierarchyRestrictions[currentHierarchy]
+	if (currentHierarchyArray === undefined) return null
+	let currentLevel = null
+	if (
+		currentHierarchyArray &&
+		currentHierarchyArray.length > 0 &&
+		query.slug
+	) {
+		currentLevel = currentHierarchyArray[query.slug.length]
+	} else currentLevel = currentHierarchyArray[0]
+	return currentLevel
+}
+
 const Default = ({ children }) => {
 	const router = useRouter()
 	const { user, currentHierarchy, dispatch } = useStore(store => ({
@@ -50,7 +64,18 @@ const Default = ({ children }) => {
 		currentHierarchy: store.currentHierarchy,
 		dispatch: store.dispatch,
 	}))
-	const sideBarOpen = usePluginsStore(store => store.sideBarOpen)
+	const { sideBarOpen, dispatchToPlugins } = usePluginsStore(store => ({
+		sideBarOpen: store.sideBarOpen,
+		dispatchToPlugins: store.dispatch,
+	}))
+	const idType = getCurrentLevel(currentHierarchy, router.query)
+
+	const enableFocusMode = () => {
+		dispatchToPlugins({
+			type: "SET_STATE",
+			payload: { sideBarOpen: false, focusMode: true },
+		})
+	}
 
 	const enabledSections = useMemo(() => {
 		let currentHierarchyArray = hierarchyRestrictions[currentHierarchy]
@@ -113,11 +138,38 @@ const Default = ({ children }) => {
 											</div>
 										</Link>
 									</div>
-									<div className="hidden sm:ml-6 sm:block">
-										<div className="flex items-center">
+									{idType === "session" ? (
+										<>
+											<div className="hidden sm:ml-6 sm:block">
+												<div className="flex items-center">
+													<button
+														type="button"
+														className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+														onClick={
+															enableFocusMode
+														}
+													>
+														<span className="sr-only">
+															Focus Mode
+														</span>
+														{sideBarOpen ? (
+															<BoltIcon
+																className="h-6 w-6"
+																aria-hidden="true"
+															/>
+														) : (
+															<BoltSlashIcon
+																className="h-6 w-6"
+																aria-hidden="true"
+															/>
+														)}
+													</button>
+												</div>
+											</div>
 											<button
 												type="button"
-												className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+												className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+												onClick={enableFocusMode}
 											>
 												<span className="sr-only">
 													Focus Mode
@@ -134,27 +186,8 @@ const Default = ({ children }) => {
 													/>
 												)}
 											</button>
-										</div>
-									</div>
-									<button
-										type="button"
-										className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
-									>
-										<span className="sr-only">
-											Focus Mode
-										</span>
-										{sideBarOpen ? (
-											<BoltIcon
-												className="h-6 w-6"
-												aria-hidden="true"
-											/>
-										) : (
-											<BoltSlashIcon
-												className="h-6 w-6"
-												aria-hidden="true"
-											/>
-										)}
-									</button>
+										</>
+									) : null}
 									{/* <div className="-mr-2 flex sm:hidden">
 										<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 hover:bg-neutral-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 											<span className="sr-only">
