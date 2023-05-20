@@ -411,8 +411,9 @@ const CohortDataWrapper = () => {
 	}))
 
 	const hierarchy = useMemo(() => {
+		const hierarchyArr = hierarchyTypes[currentHierarchy]
 		return (
-			hierarchyTypes[currentHierarchy][
+			hierarchyArr[
 				router.query.slug ? router.query.slug?.length + 1 : 1
 			] ?? null
 		)

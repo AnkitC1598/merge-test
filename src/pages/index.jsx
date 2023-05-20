@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Breadcrumb } from "~/components/molecules"
 import { Sessions } from "~/components/organisms"
 import { useGetDashboardSessions } from "~/hooks/queries/dashboard"
@@ -5,7 +6,10 @@ import { useStore } from "~/store"
 import Cohorts from "./cohorts"
 
 const Home = () => {
-	const user = useStore(store => store.user)
+	const { user, dispatch } = useStore(store => ({
+		user: store.user,
+		dispatch: store.dispatch,
+	}))
 
 	const { data: upcoming, isFetching: fetchingUpcoming } =
 		useGetDashboardSessions({ type: "upcoming" })
