@@ -45,7 +45,7 @@ const hierarchyRestrictions = {
 
 const getCurrentLevel = (currentHierarchy, query) => {
 	let currentHierarchyArray = hierarchyRestrictions[currentHierarchy]
-	if (currentHierarchyArray === undefined) return null
+	if (!currentHierarchyArray) return null
 	let currentLevel = null
 	if (
 		currentHierarchyArray &&

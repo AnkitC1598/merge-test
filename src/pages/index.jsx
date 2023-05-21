@@ -55,7 +55,7 @@ const Home = () => {
 						</p>
 
 						<div className="@container/session p-4">
-							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[minmax(calc(20%_-_32px),_1fr)] @4xl:auto-cols-[minmax(calc(25%_-_32px),_1fr)] @xl:auto-cols-[minmax(calc(33%_-_32px),_1fr)] @sm:auto-cols-[minmax(calc(50%_-_32px),_1fr)] auto-cols-[minmax(calc(75%_-_32px),_1fr)] overflow-x-scroll scrollbar-hide">
+							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[calc(20%_-_32px)] @4xl:auto-cols-[calc(25%_-_32px)] @xl:auto-cols-[calc(33%_-_32px)] @sm:auto-cols-[calc(50%_-_32px)] auto-cols-[calc(75%_-_32px)] overflow-x-scroll scrollbar-hide">
 								<Sessions
 									makeRoute
 									sessions={upcoming}
@@ -72,7 +72,7 @@ const Home = () => {
 							Recents
 						</p>
 						<div className="@container/session p-4">
-							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[minmax(calc(20%_-_32px),_1fr)] @4xl:auto-cols-[minmax(calc(25%_-_32px),_1fr)] @xl:auto-cols-[minmax(calc(33%_-_32px),_1fr)] @sm:auto-cols-[minmax(calc(50%_-_32px),_1fr)] auto-cols-[minmax(calc(75%_-_32px),_1fr)] overflow-x-scroll scrollbar-hide">
+							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[calc(20%_-_32px)] @4xl:auto-cols-[calc(25%_-_32px)] @xl:auto-cols-[calc(33%_-_32px)] @sm:auto-cols-[calc(50%_-_32px)] auto-cols-[calc(75%_-_32px)] overflow-x-scroll scrollbar-hide">
 								<Sessions
 									makeRoute
 									sessions={recent}
