@@ -1,4 +1,6 @@
 import Session from "@/content/src/pages"
+import { useMeetingEmitter } from "@/plugins/src/sockets/emitters"
+import { usePluginsSocketStore } from "@/plugins/src/store"
 import { classNames } from "@/web-core/src/utils"
 import {
 	Bars3CenterLeftIcon,
@@ -9,7 +11,7 @@ import {
 } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Back } from "~/components/atoms"
 import { Breadcrumb } from "~/components/molecules"
 import { Sessions } from "~/components/organisms"
@@ -404,14 +406,14 @@ const CohortInfoWrapper = ({ children }) => {
 
 const CohortDataWrapper = () => {
 	const router = useRouter()
-	const { user, currentHierarchy, cohortTitle } = useStore(store => ({
-		user: store.user,
+	const { currentHierarchy, cohortTitle } = useStore(store => ({
 		currentHierarchy: store.currentHierarchy,
 		cohortTitle: store.cohortTitle,
 	}))
 
 	const hierarchy = useMemo(() => {
 		const hierarchyArr = hierarchyTypes[currentHierarchy]
+		if (!hierarchyArr) return null
 		return (
 			hierarchyArr[
 				router.query.slug ? router.query.slug?.length + 1 : 1
@@ -437,14 +439,37 @@ const CohortDataWrapper = () => {
 					<SessionList />
 				)
 			) : (
-				<div className="sm:pt-8 pt-4 flex-1 flex">
-					<Session
-						userData={user}
-						currentHierarchy={currentHierarchy}
-					/>
-				</div>
+				<SessionView />
 			)}
 		</>
+	)
+}
+
+const SessionView = () => {
+	const { user, currentHierarchy } = useStore(store => ({
+		user: store.user,
+		currentHierarchy: store.currentHierarchy,
+	}))
+	const { connected, socket, roomId } = usePluginsSocketStore(store => ({
+		connected: store.meetingSocket.connected,
+		socket: store.meetingSocket.socket,
+		roomId: store.meetingSocket.roomId,
+	}))
+	const { joinMeetingSocket } = useMeetingEmitter()
+
+	useEffect(() => {
+		if (roomId === null && !connected && socket)
+			joinMeetingSocket({ currentHierarchy })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [roomId, connected, socket])
+
+	return (
+		<div className="sm:pt-8 pt-4 flex-1 flex">
+			<Session
+				userData={user}
+				currentHierarchy={currentHierarchy}
+			/>
+		</div>
 	)
 }
 
