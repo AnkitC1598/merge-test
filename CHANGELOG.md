@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.4.0](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.3.0...v0.4.0) (2023-05-21)
+
+
+### :heavy_plus_sign: Add
+
+* breadcrumbs added ([bb1ce9b](https://github.com/LetsUpgrade-Labs/lisa-student/commit/bb1ce9ba86879ca1411c2460af094eb55e027c1e))
+* upcoming & recent sessions api integrated ([3e37b0a](https://github.com/LetsUpgrade-Labs/lisa-student/commit/3e37b0a715851f129e360201fd2bb327658ad758))
+
+
+### 🐛 Bug Fixes
+
+* missing store selector fixed and added safety clause ([1c3e68a](https://github.com/LetsUpgrade-Labs/lisa-student/commit/1c3e68a076f7778e01fd2372228ed713845942f2))
+* org logo added instead of static logo ([09012bc](https://github.com/LetsUpgrade-Labs/lisa-student/commit/09012bcd3210cc8c6d33759831c668b3160f2809))
+
+
+### :recycle: Code Refactoring
+
+* focus mode toggle refactored ([c154c62](https://github.com/LetsUpgrade-Labs/lisa-student/commit/c154c6266d4e6c445eff525a81b91515f6778ec9))
+* made back btn function atomic ([f4261df](https://github.com/LetsUpgrade-Labs/lisa-student/commit/f4261df109d961d8cebbd581c4a2661e84c608dd))
+* minor code & style refactoring ([3a5a471](https://github.com/LetsUpgrade-Labs/lisa-student/commit/3a5a4712df5efaaf5bfaa458d89f6f024122d194))
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([8d3d0ff](https://github.com/LetsUpgrade-Labs/lisa-student/commit/8d3d0ff7e22f9c44a8e9a1f315665235164d2a48))
+* **plugins:** plugins submodule upgraded and made required changes ([bd3a793](https://github.com/LetsUpgrade-Labs/lisa-student/commit/bd3a7935e1da822fd67446f69a63a2874a263bf4))
+* **plugins:** plugins submodule upgraded and made required changes ([4d061f4](https://github.com/LetsUpgrade-Labs/lisa-student/commit/4d061f482ea05895fcc6542e7819f6f42cd841c5))
+* **submodules:** content & plugins submodules upgraded ([b969d69](https://github.com/LetsUpgrade-Labs/lisa-student/commit/b969d6973c95ce4c3957869ea0fd58a103453d5a))
+* **submodules:** content & plugins submodules upgraded and refactored dependent code ([de4229f](https://github.com/LetsUpgrade-Labs/lisa-student/commit/de4229f5bbca1ad58a551afb350d6a30a0757cac))
+
 ## [0.3.0](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.2.0...v0.3.0) (2023-05-15)
 
 
