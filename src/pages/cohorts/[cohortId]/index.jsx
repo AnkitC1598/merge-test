@@ -112,7 +112,7 @@ const CurriculumList = ({ hierarchy }) => {
 				</div>
 			) : (
 				<>
-					<div className="h-full flex flex-col relative">
+					<div className="h-full flex-1 flex flex-col relative">
 						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 								<Back />
@@ -304,7 +304,7 @@ const SessionList = () => {
 				</div>
 			) : (
 				<>
-					<div className="h-full flex flex-col relative">
+					<div className="h-full flex-1 flex flex-col relative">
 						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 								<Back />
@@ -424,23 +424,23 @@ const CohortDataWrapper = () => {
 
 	return (
 		<>
-			<div className="pt-4">
-				<Breadcrumb
-					breadcrumbs={[
-						{ label: "Cohorts", to: "/cohorts" },
-						{ label: cohortTitle },
-					]}
-				/>
-			</div>
-			{hierarchy ? (
-				hierarchy !== "session" ? (
-					<CurriculumList hierarchy={hierarchy} />
+			<Breadcrumb
+				breadcrumbs={[
+					{ label: "Cohorts", to: "/cohorts" },
+					{ label: cohortTitle },
+				]}
+			/>
+			<div className="@lg:px-8 px-2 flex flex-1">
+				{hierarchy ? (
+					hierarchy !== "session" ? (
+						<CurriculumList hierarchy={hierarchy} />
+					) : (
+						<SessionList />
+					)
 				) : (
-					<SessionList />
-				)
-			) : (
-				<SessionView />
-			)}
+					<SessionView />
+				)}
+			</div>
 		</>
 	)
 }

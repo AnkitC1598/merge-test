@@ -19,7 +19,7 @@ const SessionCard = ({ session, type, makeRoute }) => {
 		if (!makeRoute) return `${router.asPath}/${session._id}`
 		const hierarchy = session.cohort.type.map(t => t[0]).join("")
 		const hierarchyArr = hierarchyTypes[hierarchy]
-		let route = "/cohorts/"
+		let route = "/cohorts"
 
 		hierarchyArr.forEach((h, i) => {
 			if (i === 0) route += `/${session.cohort._id}`

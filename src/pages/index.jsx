@@ -34,10 +34,8 @@ const Home = () => {
 
 	return (
 		<>
-			<div className="pt-4">
-				<Breadcrumb breadcrumbs={[]} />
-			</div>
-			<div className="sm:pt-8 pt-4 flex flex-col gap-8 justify-start">
+			<Breadcrumb breadcrumbs={[]} />
+			<div className="@lg:px-8 px-2 sm:pt-8 pt-4 flex flex-col gap-8 justify-start">
 				<div className="flex flex-col gap-0.5">
 					<h1 className="text-2xl leading-8 font-semibold">
 						Welcome, {user?.fullname}!
