@@ -11,6 +11,7 @@
 		"lint": "pnpm lint:es && pnpm lint:pre",
 		"prepare": "husky install",
 		"release": "release-it",
+		"install-submodules": "./submodules.sh && pnpm i",
 		"postinstall": "is-ci || (pnpm prepare && pnpm lint)"
 	},
 	"dependencies": {
