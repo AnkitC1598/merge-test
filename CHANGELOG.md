@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.2](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.1...v0.4.2) (2023-05-22)
+
+
+### 🛠 Builds
+
+* **submodules:** nested submodules installation script a ([4a2d180](https://github.com/LetsUpgrade-Labs/lisa-student/commit/4a2d180e6f14e5dc88cae1a4e81c14aabcafdea8))
+
 ### [0.4.1](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.0...v0.4.1) (2023-05-22)
 
 
