@@ -139,56 +139,61 @@ const Default = ({ children }) => {
 											</div>
 										</Link>
 									</div>
-									{idType === "session" ? (
-										<>
-											<div className="hidden sm:ml-6 sm:block">
-												<div className="flex items-center">
-													<button
-														type="button"
-														className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
-														onClick={
-															enableFocusMode
-														}
-													>
-														<span className="sr-only">
-															Focus Mode
-														</span>
-														{sideBarOpen ? (
-															<BoltIcon
-																className="h-6 w-6"
-																aria-hidden="true"
-															/>
-														) : (
-															<BoltSlashIcon
-																className="h-6 w-6"
-																aria-hidden="true"
-															/>
-														)}
-													</button>
+									<div className="flex items-center gap-2">
+										{idType === "session" ? (
+											<>
+												<div className="hidden sm:ml-6 sm:block">
+													<div className="flex items-center">
+														<button
+															type="button"
+															className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+															onClick={
+																enableFocusMode
+															}
+														>
+															<span className="sr-only">
+																Focus Mode
+															</span>
+															{sideBarOpen ? (
+																<BoltIcon
+																	className="h-6 w-6"
+																	aria-hidden="true"
+																/>
+															) : (
+																<BoltSlashIcon
+																	className="h-6 w-6"
+																	aria-hidden="true"
+																/>
+															)}
+														</button>
+													</div>
 												</div>
-											</div>
-											<button
-												type="button"
-												className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
-												onClick={enableFocusMode}
-											>
-												<span className="sr-only">
-													Focus Mode
-												</span>
-												{sideBarOpen ? (
-													<BoltIcon
-														className="h-6 w-6"
-														aria-hidden="true"
-													/>
-												) : (
-													<BoltSlashIcon
-														className="h-6 w-6"
-														aria-hidden="true"
-													/>
-												)}
-											</button>
-										</>
-									) : null}
+												<button
+													type="button"
+													className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+													onClick={enableFocusMode}
+												>
+													<span className="sr-only">
+														Focus Mode
+													</span>
+													{sideBarOpen ? (
+														<BoltIcon
+															className="h-6 w-6"
+															aria-hidden="true"
+														/>
+													) : (
+														<BoltSlashIcon
+															className="h-6 w-6"
+															aria-hidden="true"
+														/>
+													)}
+												</button>
+											</>
+										) : null}
+										<span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10 dark:bg-purple-400/10 dark:text-purple-400 dark:ring-purple-400/30">
+											Beta
+										</span>
+									</div>
 									{/* <div className="-mr-2 flex sm:hidden">
 										<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 hover:bg-neutral-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 											<span className="sr-only">
@@ -290,6 +295,7 @@ const Default = ({ children }) => {
 				dispatchToApp={dispatch}
 				version={packageJson?.version}
 				userData={user}
+				orgInfo={orgInfo}
 				enabledSections={enabledSections}
 				defaultSection={enabledSections[0]}
 				currentHierarchy={currentHierarchy}
