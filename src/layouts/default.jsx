@@ -74,7 +74,7 @@ const Default = ({ children }) => {
 	const enableFocusMode = () => {
 		dispatchToPlugins({
 			type: "SET_STATE",
-			payload: { sideBarOpen: false, focusMode: true },
+			payload: { sideBarOpen: !sideBarOpen, focusMode: true },
 		})
 	}
 
