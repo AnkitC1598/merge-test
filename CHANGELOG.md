@@ -1,5 +1,19 @@
 # Changelog
 
+### [0.4.4](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.3...v0.4.4) (2023-05-22)
+
+
+### :recycle: Code Refactoring
+
+* minor routing and style refactoring with empty states ([384024f](https://github.com/LetsUpgrade-Labs/lisa-student/commit/384024fc2da1b4d8a7cf3c5b8d83ed38d99068b3))
+
+
+### ⬆️ Packages Upgrades
+
+* **plugins:** plugins submodule upgraded ([12c37f5](https://github.com/LetsUpgrade-Labs/lisa-student/commit/12c37f578aaf3086944f8b07bee513f5ac74f01e))
+* **plugins:** plugins submodule upgraded ([893525c](https://github.com/LetsUpgrade-Labs/lisa-student/commit/893525c8fc4daa75670576ac037fcf28af4d879f))
+* **plugins:** plugins submodule upgraded and made required changes ([03170a4](https://github.com/LetsUpgrade-Labs/lisa-student/commit/03170a4cb4473073376be3978a5f1fa850749bab))
+
 ### [0.4.3](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.2...v0.4.3) (2023-05-22)
 
 
