@@ -296,6 +296,7 @@ const Default = ({ children }) => {
 				version={packageJson?.version}
 				userData={user}
 				orgInfo={orgInfo}
+				instance="student"
 				enabledSections={enabledSections}
 				defaultSection={enabledSections[0]}
 				currentHierarchy={currentHierarchy}
