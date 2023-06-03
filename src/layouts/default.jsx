@@ -9,6 +9,7 @@ import { useRouter } from "next/router"
 import { cloneElement, useMemo } from "react"
 import { useStore } from "~/store"
 import packageJson from "../../package.json"
+import { Resizable } from "re-resizable"
 
 const tabVisibility = {
 	default: ["chat", "profile", "settings"],
@@ -100,101 +101,119 @@ const Default = ({ children }) => {
 
 	return (
 		<>
-			<div
-				className={classNames(
-					"@container w-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
-					sideBarOpen
-						? "md:w-8/12 lg:w-9/12"
-						: "sm:w-excludeSidebarIcon"
-				)}
+			<Resizable
+				defaultSize={{
+					width: "70%",
+				}}
+				maxWidth="75%"
+				minWidth="65%"
+				enable={{
+					top: false,
+					right: true,
+					bottom: false,
+					left: false,
+					topRight: false,
+					bottomRight: false,
+					bottomLeft: false,
+					topLeft: false,
+				}}
+				className="flex flex-col h-full"
 			>
-				<Disclosure
-					as="nav"
-					className="relative"
+				<div
+					className={classNames(
+						"@container w-full h-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
+						!sideBarOpen && "sm:w-excludeSidebarIcon"
+					)}
 				>
-					{({ open }) => (
-						<>
-							<div className="px-4 sm:px-6 lg:px-8 shadow dark:shadow-neutral-700 relative z-30">
-								<div className="flex h-16 items-center justify-between">
-									<div className="flex items-center">
-										<Link
-											href="/"
-											className="flex-shrink-0"
-										>
-											<div className="h-12 w-28 aspect-video relative overflow-hidden">
-												<Image
-													className="block dark:hidden object-contain object-left"
-													src={orgInfo?.logo}
-													alt={orgInfo?.name}
-													fill
-													priority
-												/>
-												<Image
-													className="hidden dark:block object-contain object-left"
-													src={orgInfo?.logo}
-													alt={orgInfo?.name}
-													fill
-													priority
-												/>
-											</div>
-										</Link>
-									</div>
-									<div className="flex items-center gap-2">
-										{idType === "session" ? (
-											<>
-												<div className="hidden sm:ml-6 sm:block">
-													<div className="flex items-center">
-														<button
-															type="button"
-															className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
-															onClick={
-																enableFocusMode
-															}
-														>
-															<span className="sr-only">
-																Focus Mode
-															</span>
-															{sideBarOpen ? (
-																<BoltIcon
-																	className="h-6 w-6"
-																	aria-hidden="true"
-																/>
-															) : (
-																<BoltSlashIcon
-																	className="h-6 w-6"
-																	aria-hidden="true"
-																/>
-															)}
-														</button>
-													</div>
+					<Disclosure
+						as="nav"
+						className="relative"
+					>
+						{({ open }) => (
+							<>
+								<div className="px-4 sm:px-6 lg:px-8 shadow dark:shadow-neutral-700 relative z-30">
+									<div className="flex h-16 items-center justify-between">
+										<div className="flex items-center">
+											<Link
+												href="/"
+												className="flex-shrink-0"
+											>
+												<div className="h-12 w-28 aspect-video relative overflow-hidden">
+													<Image
+														className="block dark:hidden object-contain object-left"
+														src={orgInfo?.logo}
+														alt={orgInfo?.name}
+														fill
+														priority
+													/>
+													<Image
+														className="hidden dark:block object-contain object-left"
+														src={orgInfo?.logo}
+														alt={orgInfo?.name}
+														fill
+														priority
+													/>
 												</div>
-												<button
-													type="button"
-													className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
-													onClick={enableFocusMode}
-												>
-													<span className="sr-only">
-														Focus Mode
-													</span>
-													{sideBarOpen ? (
-														<BoltIcon
-															className="h-6 w-6"
-															aria-hidden="true"
-														/>
-													) : (
-														<BoltSlashIcon
-															className="h-6 w-6"
-															aria-hidden="true"
-														/>
-													)}
-												</button>
-											</>
-										) : null}
-										<span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10 dark:bg-purple-400/10 dark:text-purple-400 dark:ring-purple-400/30">
-											Beta
-										</span>
-									</div>
-									{/* <div className="-mr-2 flex sm:hidden">
+											</Link>
+										</div>
+										<div className="flex items-center gap-2">
+											{idType === "session" ? (
+												<>
+													<div className="hidden sm:ml-6 sm:block">
+														<div className="flex items-center">
+															<button
+																type="button"
+																className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+																onClick={
+																	enableFocusMode
+																}
+															>
+																<span className="sr-only">
+																	Focus Mode
+																</span>
+																{sideBarOpen ? (
+																	<BoltIcon
+																		className="h-6 w-6"
+																		aria-hidden="true"
+																	/>
+																) : (
+																	<BoltSlashIcon
+																		className="h-6 w-6"
+																		aria-hidden="true"
+																	/>
+																)}
+															</button>
+														</div>
+													</div>
+													<button
+														type="button"
+														className="sm:hidden rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+														onClick={
+															enableFocusMode
+														}
+													>
+														<span className="sr-only">
+															Focus Mode
+														</span>
+														{sideBarOpen ? (
+															<BoltIcon
+																className="h-6 w-6"
+																aria-hidden="true"
+															/>
+														) : (
+															<BoltSlashIcon
+																className="h-6 w-6"
+																aria-hidden="true"
+															/>
+														)}
+													</button>
+												</>
+											) : null}
+											<span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10 dark:bg-purple-400/10 dark:text-purple-400 dark:ring-purple-400/30">
+												Beta
+											</span>
+										</div>
+										{/* <div className="-mr-2 flex sm:hidden">
 										<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 hover:bg-neutral-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 											<span className="sr-only">
 												Open main menu
@@ -212,9 +231,9 @@ const Default = ({ children }) => {
 											)}
 										</Disclosure.Button>
 									</div> */}
+									</div>
 								</div>
-							</div>
-							{/* <Transition
+								{/* <Transition
 								enter="transition ease-out duration-100"
 								enterFrom="transform opacity-0 scale-95"
 								enterTo="transform opacity-100 scale-100"
@@ -282,15 +301,16 @@ const Default = ({ children }) => {
 									</div>
 								</Disclosure.Panel>
 							</Transition> */}
-						</>
-					)}
-				</Disclosure>
-				<div className="flex-1 h-navScreen overflow-x-hidden overflow-y-scroll scrollbar">
-					{typeof children === "function"
-						? children()
-						: cloneElement(children, {})}
+							</>
+						)}
+					</Disclosure>
+					<div className="flex-1 h-navScreen overflow-x-hidden overflow-y-scroll scrollbar">
+						{typeof children === "function"
+							? children()
+							: cloneElement(children, {})}
+					</div>
 				</div>
-			</div>
+			</Resizable>
 			<SidebarView
 				dispatchToApp={dispatch}
 				version={packageJson?.version}

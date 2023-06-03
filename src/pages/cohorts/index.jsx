@@ -78,16 +78,16 @@ const Cohorts = ({ preview = false }) => {
 								?.slice(0, preview ? 5 : Infinity)
 								?.map(cohort => (
 									<div
-										key={cohort.cohort._id}
+										key={cohort.cohort?._id}
 										className="col-span-1 rounded-md border border-neutral-300 dark:border-neutral-700 shadow hover:shadow-md dark:shadow-neutral-700 group"
 									>
 										<Link
-											href={`/cohorts/${cohort.cohort._id}`}
+											href={`/cohorts/${cohort.cohort?._id}`}
 											className="flex flex-col justify-between gap-6 p-4 h-full w-full"
 										>
 											<div className="flex flex-col gap-1">
 												<div className="text-sm leading-5 font-medium text-purple-500 dark:text-purple-300">
-													{cohort.cohort.title}
+													{cohort.cohort?.title}
 												</div>
 												<div className="text-sm leading-5 font-normal text-slate-400">
 													{cohort.course?.title}
