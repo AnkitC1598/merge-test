@@ -76,54 +76,56 @@ const Cohorts = ({ preview = false }) => {
 						<div className="gap-4 grid @2xl/cohorts:grid-cols-4 @md/cohorts:grid-cols-3 @sm/cohorts:grid-cols-2 grid-cols-1">
 							{cohorts
 								?.slice(0, preview ? 5 : Infinity)
-								?.map(cohort => (
-									<div
-										key={cohort.cohort._id}
-										className="col-span-1 rounded-md border border-neutral-300 dark:border-neutral-700 shadow hover:shadow-md dark:shadow-neutral-700 group"
-									>
-										<Link
-											href={`/cohorts/${cohort.cohort._id}`}
-											className="flex flex-col justify-between gap-6 p-4 h-full w-full"
+								?.map(cohort =>
+									!cohort.cohort ? null : (
+										<div
+											key={cohort.cohort._id}
+											className="col-span-1 rounded-md border border-neutral-300 dark:border-neutral-700 shadow hover:shadow-md dark:shadow-neutral-700 group"
 										>
-											<div className="flex flex-col gap-1">
-												<div className="text-sm leading-5 font-medium text-purple-500 dark:text-purple-300">
-													{cohort.cohort.title}
+											<Link
+												href={`/cohorts/${cohort.cohort._id}`}
+												className="flex flex-col justify-between gap-6 p-4 h-full w-full"
+											>
+												<div className="flex flex-col gap-1">
+													<div className="text-sm leading-5 font-medium text-purple-500 dark:text-purple-300">
+														{cohort.cohort.title}
+													</div>
+													<div className="text-sm leading-5 font-normal text-slate-400">
+														{cohort.course?.title}
+													</div>
 												</div>
-												<div className="text-sm leading-5 font-normal text-slate-400">
-													{cohort.course?.title}
-												</div>
-											</div>
-											<div className="flex flex-col gap-1 text-slate-400">
-												<div className="flex gap-2">
-													<UsersIcon className="h-4 w-4" />
-													<span className="text-sm leading-5 font-normal">
-														*120 Students
-													</span>
-												</div>
-												{cohort.duration ? (
+												<div className="flex flex-col gap-1 text-slate-400">
 													<div className="flex gap-2">
-														<CalendarDaysIcon className="h-4 w-4" />
+														<UsersIcon className="h-4 w-4" />
 														<span className="text-sm leading-5 font-normal">
-															{format(
-																new Date(
-																	cohort.duration.startDate
-																),
-																"LLL yyyy"
-															)}{" "}
-															-{" "}
-															{format(
-																new Date(
-																	cohort.duration.endDate
-																),
-																"LLL yyyy"
-															)}
+															*120 Students
 														</span>
 													</div>
-												) : null}
-											</div>
-										</Link>
-									</div>
-								))}
+													{cohort.duration ? (
+														<div className="flex gap-2">
+															<CalendarDaysIcon className="h-4 w-4" />
+															<span className="text-sm leading-5 font-normal">
+																{format(
+																	new Date(
+																		cohort.duration.startDate
+																	),
+																	"LLL yyyy"
+																)}{" "}
+																-{" "}
+																{format(
+																	new Date(
+																		cohort.duration.endDate
+																	),
+																	"LLL yyyy"
+																)}
+															</span>
+														</div>
+													) : null}
+												</div>
+											</Link>
+										</div>
+									)
+								)}
 						</div>
 					</div>
 				) : (

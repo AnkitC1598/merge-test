@@ -325,16 +325,20 @@ const SessionList = () => {
 										)}
 									>
 										<div className="w-full flex items-center gap-2">
-											<Link
-												href={router.asPath
-													.split("/")
-													.slice(0, -1)
-													.join("/")}
-												className="text-base text-slate-500 dark:text-slate-400"
-											>
-												{prevTitle}
-											</Link>
-											<ChevronRightIcon className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+											{prevTitle ? (
+												<>
+													<Link
+														href={router.asPath
+															.split("/")
+															.slice(0, -1)
+															.join("/")}
+														className="text-base text-slate-500 dark:text-slate-400"
+													>
+														{prevTitle}
+													</Link>
+													<ChevronRightIcon className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+												</>
+											) : null}
 											<span>Sessions</span>
 										</div>
 									</div>
