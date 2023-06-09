@@ -1,5 +1,24 @@
 # Changelog
 
+### [0.4.7](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.6...v0.4.7) (2023-06-09)
+
+
+### 🐛 Bug Fixes
+
+* added missing package ([4ae6df0](https://github.com/LetsUpgrade-Labs/lisa-student/commit/4ae6df09945560e5c28ca3de99c7ac4650d43126))
+
+
+### :heavy_plus_sign: Add
+
+* content panel made re-sizable using re-resiable package ([94153e3](https://github.com/LetsUpgrade-Labs/lisa-student/commit/94153e3a5669b2e200756f11a926030228952072))
+* reaction imgs added ([09c744e](https://github.com/LetsUpgrade-Labs/lisa-student/commit/09c744e6b011ab9f21e2bfd969c35f5f8b5123c7))
+
+
+### ⬆️ Packages Upgrades
+
+* **plugins:** plugins submodule upgraded ([8444195](https://github.com/LetsUpgrade-Labs/lisa-student/commit/84441956a09a88faad5c7ceb1230e01b425882e0))
+* **submodules:** plugins and content submodules upgraded ([772b640](https://github.com/LetsUpgrade-Labs/lisa-student/commit/772b640f4facef8c3914c4e81a606bc70aa23543))
+
 ### [0.4.6](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.5...v0.4.6) (2023-06-09)
 
 
