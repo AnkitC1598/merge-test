@@ -1,5 +1,26 @@
 # Changelog
 
+### [0.4.6](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.5...v0.4.6) (2023-06-09)
+
+
+### * Chores
+
+* favicon updated ([d61d38f](https://github.com/LetsUpgrade-Labs/lisa-student/commit/d61d38f1d649b3dbd9873c76c980e3a886149341))
+
+
+### 🐛 Bug Fixes
+
+* minor error handling for missing cohort ([ace6d66](https://github.com/LetsUpgrade-Labs/lisa-student/commit/ace6d669321a05b0a51ddf126dfca87ee5625f9e))
+* missing packages added ([065d274](https://github.com/LetsUpgrade-Labs/lisa-student/commit/065d2746dd4853817af1c02fbb1749f35dac519f))
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([2fd3467](https://github.com/LetsUpgrade-Labs/lisa-student/commit/2fd3467800142f9087e181168d3468d20632bdd9))
+* **plugins:** plugins submodule upgraded ([d41af99](https://github.com/LetsUpgrade-Labs/lisa-student/commit/d41af998263e502b506232e1ba812c30c384b0a6))
+* **plugins:** plugins submodule upgraded ([1844d7d](https://github.com/LetsUpgrade-Labs/lisa-student/commit/1844d7d3755312117c1caa5ce17cb79dd0c8e128))
+* **submodules:** plugins and content submodules upgraded ([9b1d9f6](https://github.com/LetsUpgrade-Labs/lisa-student/commit/9b1d9f605ae351530315a6e64af522d06933e762))
+
 ### [0.4.5](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.4...v0.4.5) (2023-05-22)
 
 
