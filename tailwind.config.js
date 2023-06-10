@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const SharedTailwindConfig = require("./src/submodules/web-core/tailwind.config")
+const plugin = require("tailwindcss/plugin")
 
 const SharedTailwindConfigThemeExtend = SharedTailwindConfig.theme.extend
 const ExtendedTheme = {
@@ -21,7 +22,24 @@ Object.keys(SharedTailwindConfigThemeExtend).forEach(key => {
 MergedExtentedTheme = Object.assign(MergedExtentedTheme, ExtendedTheme)
 
 const SharedTailwindConfigPlugins = SharedTailwindConfig.plugins
-const ExtendedPlugins = []
+const ExtendedPlugins = [
+	plugin(function ({ addUtilities }) {
+		addUtilities({
+			".rotate-x-180": {
+				transform: "rotateX(180deg)",
+			},
+			".preserve-3d": {
+				transformStyle: "preserve-3d",
+			},
+			".perspective": {
+				perspective: "1000px",
+			},
+			".backface-hidden": {
+				backfaceVisibility: "hidden",
+			},
+		})
+	}),
+]
 const MergedPlugins = [...SharedTailwindConfigPlugins, ...ExtendedPlugins]
 
 module.exports = {
