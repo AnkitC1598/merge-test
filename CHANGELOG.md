@@ -1,5 +1,15 @@
 # Changelog
 
+### [0.4.8](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.7...v0.4.8) (2023-06-12)
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([baf974b](https://github.com/LetsUpgrade-Labs/lisa-student/commit/baf974bceffbe37ea01858b28e7c25a67046ffb6))
+* **content:** content submodule upgraded w/ required changes ([05e5ddd](https://github.com/LetsUpgrade-Labs/lisa-student/commit/05e5ddd3f4b8b0d2af1df6e6412faff09e78e214))
+* **plugins:** plugins submodule upgraded ([04a099c](https://github.com/LetsUpgrade-Labs/lisa-student/commit/04a099c62b82d388e93fcbbce6debbf8257c7b33))
+* **plugins:** plugins submodule upgraded and made required changes ([37ecbee](https://github.com/LetsUpgrade-Labs/lisa-student/commit/37ecbee4d43459e522bce2a65667c21c7cc2f2fb))
+
 ### [0.4.7](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.6...v0.4.7) (2023-06-09)
 
 
