@@ -118,6 +118,14 @@ const Default = ({ children }) => {
 					topLeft: false,
 				}}
 				className="flex flex-col h-full"
+				handleClasses={{
+					right: "hover:bg-neutral-800 active:bg-neutral-800 w-2 right-2 transition-all duration-500 ease-in-out after:content-[''] after:absolute after:top-[calc(50%_-_20px)] after:left-1/2 after:h-5 after:w-1 hover:after:visible active:after:visible after:invisible after:col-resize after:bg-neutral-300 after:rounded after:transform after:translate-x-[-50%] after:translate-y-[-50%] after:shadow after:dark:bg-neutral-700 after:dark:shadow-neutral-700 after:active:bg-neutral-400 after:active:dark:bg-neutral-600 after:active:shadow-neutral-600 after:active:dark:shadow-neutral-600 after:transition-all after:duration-500 after:ease-in-out",
+				}}
+				handleStyles={{
+					right: {
+						right: "0px",
+					},
+				}}
 			>
 				<div
 					className={classNames(
