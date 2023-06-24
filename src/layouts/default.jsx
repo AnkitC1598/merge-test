@@ -6,10 +6,10 @@ import { BoltIcon, BoltSlashIcon } from "@heroicons/react/20/solid"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { cloneElement, useMemo } from "react"
+import { Resizable } from "re-resizable"
+import { cloneElement, useEffect, useMemo, useState } from "react"
 import { useStore } from "~/store"
 import packageJson from "../../package.json"
-import { Resizable } from "re-resizable"
 
 const tabVisibility = {
 	default: ["chat", "profile", "settings"],
@@ -70,6 +70,7 @@ const Default = ({ children }) => {
 		sideBarOpen: store.sideBarOpen,
 		dispatchToPlugins: store.dispatch,
 	}))
+	const [sidebarWidth, setSidebarWidth] = useState()
 	const idType = getCurrentLevel(currentHierarchy, router.query)
 
 	const enableFocusMode = () => {
@@ -99,6 +100,11 @@ const Default = ({ children }) => {
 		return tabVisibility[Object.keys(ids).at(-1) ?? "default"]
 	}, [currentHierarchy, router])
 
+	useEffect(() => {
+		if (router.isReady)
+			setSidebarWidth(document.querySelector(".mainSection").clientWidth)
+	}, [router, sideBarOpen])
+
 	return (
 		<>
 			<Resizable
@@ -126,10 +132,15 @@ const Default = ({ children }) => {
 						right: "0px",
 					},
 				}}
+				onResize={() => {
+					setSidebarWidth(
+						document.querySelector(".mainSection").clientWidth
+					)
+				}}
 			>
 				<div
 					className={classNames(
-						"@container w-full h-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
+						"mainSection @container w-full h-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
 						!sideBarOpen && "sm:w-excludeSidebarIcon"
 					)}
 				>
@@ -328,6 +339,7 @@ const Default = ({ children }) => {
 				enabledSections={enabledSections}
 				defaultSection={enabledSections[0]}
 				currentHierarchy={currentHierarchy}
+				sidebarWidth={sidebarWidth}
 			/>
 		</>
 	)
