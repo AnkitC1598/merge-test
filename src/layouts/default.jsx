@@ -100,6 +100,14 @@ const Default = ({ children }) => {
 		return tabVisibility[Object.keys(ids).at(-1) ?? "default"]
 	}, [currentHierarchy, router])
 
+	const [currentWidth, setCurrentWidth] = useState("70%")
+
+	const handleResize = () => {
+		setCurrentWidth(
+			document.getElementById("mainContainer").clientWidth + "px"
+		)
+	}
+
 	useEffect(() => {
 		if (router.isReady)
 			setSidebarWidth(document.querySelector(".mainSection").clientWidth)
@@ -132,13 +140,10 @@ const Default = ({ children }) => {
 						right: "0px",
 					},
 				}}
-				onResize={() => {
-					setSidebarWidth(
-						document.querySelector(".mainSection").clientWidth
-					)
-				}}
+				onResize={handleResize}
 			>
 				<div
+					id="mainContainer"
 					className={classNames(
 						"mainSection @container w-full h-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
 						!sideBarOpen && "sm:w-excludeSidebarIcon"
@@ -340,6 +345,7 @@ const Default = ({ children }) => {
 				defaultSection={enabledSections[0]}
 				currentHierarchy={currentHierarchy}
 				sidebarWidth={sidebarWidth}
+				currentWidth={currentWidth}
 			/>
 		</>
 	)
