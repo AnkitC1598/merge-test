@@ -1,5 +1,19 @@
 # Changelog
 
+### [0.4.12](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.11...v0.4.12) (2023-06-25)
+
+
+### ⬆️ Packages Upgrades
+
+* **plugins:** plugins submodule upgraded ([4d2cd70](https://github.com/LetsUpgrade-Labs/lisa-student/commit/4d2cd70b09d611dd1fe9994951ef97326c1159d3))
+* **plugins:** plugins submodule upgraded ([4ce9120](https://github.com/LetsUpgrade-Labs/lisa-student/commit/4ce912012ddf562d7812ac38b99726eb1d0d2f7e))
+* **submodules:** plugins & content submodules upgraded ([1e336a1](https://github.com/LetsUpgrade-Labs/lisa-student/commit/1e336a1c1f658d7be8c7e40cbedba7c5a71ad2f0))
+
+
+### :recycle: Code Refactoring
+
+* tabVisibility array updated for sidebar tabs ([106f82c](https://github.com/LetsUpgrade-Labs/lisa-student/commit/106f82cf8f9572f2ca1da04e3a194668d6cd10e2))
+
 ### [0.4.11](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.10...v0.4.11) (2023-06-25)
 
 
