@@ -36,7 +36,7 @@ const types = [
 		contentType: "recorded",
 	},
 	{
-		label: "RichText",
+		label: "Text",
 		value: "rte",
 		icon: RTEIcon,
 		color: "neutral",
