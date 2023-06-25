@@ -70,8 +70,9 @@ const Default = ({ children }) => {
 		sideBarOpen: store.sideBarOpen,
 		dispatchToPlugins: store.dispatch,
 	}))
-	const [sidebarWidth, setSidebarWidth] = useState()
 	const idType = getCurrentLevel(currentHierarchy, router.query)
+
+	const [viewWidth, setViewWidth] = useState("70%")
 
 	const enableFocusMode = () => {
 		dispatchToPlugins({
@@ -100,18 +101,18 @@ const Default = ({ children }) => {
 		return tabVisibility[Object.keys(ids).at(-1) ?? "default"]
 	}, [currentHierarchy, router])
 
-	const [currentWidth, setCurrentWidth] = useState("70%")
-
 	const handleResize = () => {
-		setCurrentWidth(
+		setViewWidth(
 			document.getElementById("mainContainer").clientWidth + "px"
 		)
 	}
 
 	useEffect(() => {
-		if (router.isReady)
-			setSidebarWidth(document.querySelector(".mainSection").clientWidth)
-	}, [router, sideBarOpen])
+		handleResize()
+		new ResizeObserver(handleResize).observe(
+			document.getElementById("mainContainer")
+		)
+	}, [])
 
 	return (
 		<>
@@ -344,8 +345,7 @@ const Default = ({ children }) => {
 				enabledSections={enabledSections}
 				defaultSection={enabledSections[0]}
 				currentHierarchy={currentHierarchy}
-				sidebarWidth={sidebarWidth}
-				currentWidth={currentWidth}
+				viewWidth={viewWidth}
 			/>
 		</>
 	)

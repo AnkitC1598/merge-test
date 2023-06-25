@@ -49,7 +49,7 @@ const Home = () => {
 				) : upcoming.length ? (
 					<div className="flex flex-col rounded-md">
 						<p className="p-4 pb-0 text-sm leading-5 font-normal">
-							Upcoming
+							Upcoming Sessions
 						</p>
 
 						<div className="@container/session p-4">
@@ -67,7 +67,7 @@ const Home = () => {
 				) : recent.length ? (
 					<div className="flex flex-col rounded-md">
 						<p className="p-4 pb-0 text-sm leading-5 font-normal">
-							Recents
+							Recent Sessions
 						</p>
 						<div className="@container/session p-4">
 							<div className="gap-4 grid grid-flow-col @5xl:auto-cols-[calc(20%_-_32px)] @4xl:auto-cols-[calc(25%_-_32px)] @xl:auto-cols-[calc(33%_-_32px)] @sm:auto-cols-[calc(50%_-_32px)] auto-cols-[calc(75%_-_32px)] overflow-x-scroll scrollbar-hide">
