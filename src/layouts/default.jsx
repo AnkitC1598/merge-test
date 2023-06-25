@@ -111,15 +111,16 @@ const Default = ({ children }) => {
 
 	const handleResize = () => {
 		setViewWidth(
-			document.getElementById("mainContainer").clientWidth + "px"
+			document.getElementById("mainContainer")?.clientWidth ?? 0 + "px"
 		)
 	}
 
 	useEffect(() => {
 		handleResize()
-		new ResizeObserver(handleResize).observe(
-			document.getElementById("mainContainer")
-		)
+		if (document.getElementById("mainContainer"))
+			new ResizeObserver(handleResize).observe(
+				document.getElementById("mainContainer")
+			)
 	}, [])
 
 	return (

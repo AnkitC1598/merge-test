@@ -6,7 +6,7 @@ import {
 	VideoCameraIcon,
 } from "@heroicons/react/20/solid"
 import { SessionCard } from "~/components/atoms"
-import { LiveIcon, RTEIcon } from "~/svgs"
+import { LiveIcon, RTEIcon, YoutubeIcon } from "~/svgs"
 
 const types = [
 	{
@@ -34,6 +34,18 @@ const types = [
 		},
 		type: "content",
 		contentType: "recorded",
+	},
+	{
+		label: "Youtube Recorded",
+		value: "recordedYoutube",
+		icon: YoutubeIcon,
+		colors: {
+			card: "bg-rose-50 dark:bg-rose-800 text-rose-500 dark:text-rose-200",
+			icon: "text-rose-200/50 dark:text-rose-400/50",
+			border: "border-rose-200 dark:border-rose-600",
+		},
+		type: "content",
+		contentType: "recordedYoutube",
 	},
 	{
 		label: "Text",
