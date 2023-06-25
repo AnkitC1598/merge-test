@@ -2,11 +2,27 @@ import { classNames } from "@/web-core/src/utils"
 import { CalendarDaysIcon, UsersIcon } from "@heroicons/react/20/solid"
 import { RectangleStackIcon } from "@heroicons/react/24/solid"
 import { format } from "date-fns"
+import Image from "next/image"
 import Link from "next/link"
 import { useEffect } from "react"
 import { Breadcrumb } from "~/components/molecules"
 import { useGetAllCohorts } from "~/hooks/queries/curriculum"
 import { useStore } from "~/store"
+
+const typeMap = {
+	ctsct: {
+		label: "Degree",
+		color: "bg-lime-50 text-lime-700 ring-lime-600/20 dark:bg-lime-500/10 dark:text-lime-400 dark:ring-lime-500/20",
+	},
+	cst: {
+		label: "Bootcamp",
+		color: "bg-pink-50 text-pink-700 ring-pink-700/10 dark:bg-pink-400/10 dark:text-pink-400 dark:ring-pink-400/20",
+	},
+	ct: {
+		label: "Workshop",
+		color: "bg-amber-50 text-amber-800 ring-amber-600/20 dark:bg-amber-400/10 dark:text-amber-500 dark:ring-amber-400/20",
+	},
+}
 
 const Cohorts = ({ preview = false }) => {
 	const dispatch = useStore(store => store.dispatch)
@@ -76,56 +92,123 @@ const Cohorts = ({ preview = false }) => {
 						<div className="gap-4 grid @2xl/cohorts:grid-cols-4 @md/cohorts:grid-cols-3 @sm/cohorts:grid-cols-2 grid-cols-1">
 							{cohorts
 								?.slice(0, preview ? 5 : Infinity)
-								?.map(cohort =>
-									!cohort.cohort ? null : (
-										<div
-											key={cohort.cohort._id}
-											className="col-span-1 rounded-md border border-neutral-300 dark:border-neutral-700 shadow hover:shadow-md dark:shadow-neutral-700 group"
+								?.map(cohort => {
+									if (!cohort) return null
+									cohort = cohort.cohort
+									const cohortType = cohort.type
+										.map(t => t[0])
+										.join("")
+									return (
+										<Link
+											key={cohort?._id}
+											href={`/cohorts/${cohort?._id}`}
+											className="flex flex-col col-span-1 rounded-md bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow hover:shadow-md hover:border-neutral-200 dark:shadow-neutral-800 divide-y divide-purple-100 dark:divide-neutral-700 transition-all duration-300 ease-in-out group font-medium overflow-hidden"
 										>
-											<Link
-												href={`/cohorts/${cohort.cohort._id}`}
-												className="flex flex-col justify-between gap-6 p-4 h-full w-full"
-											>
-												<div className="flex flex-col gap-1">
-													<div className="text-sm leading-5 font-medium text-purple-500 dark:text-purple-300">
-														{cohort.cohort.title}
+											<div className="flex flex-col">
+												{cohort?.coverImage ? (
+													<div className="w-full aspect-video relative">
+														<Image
+															src={
+																cohort?.coverImage
+															}
+															alt={cohort?.title}
+															fill
+															priority
+														/>
 													</div>
-													<div className="text-sm leading-5 font-normal text-slate-400">
-														{cohort.course?.title}
+												) : (
+													<div className="w-full aspect-video bg-purple-50 dark:bg-purple-950/30 flex items-center justify-center">
+														<div className="h-10 w-10 relative">
+															<Image
+																src={`/favicon.ico`}
+																alt={
+																	cohort?.title
+																}
+																fill
+																className="opacity-10"
+															/>
+														</div>
 													</div>
-												</div>
-												<div className="flex flex-col gap-1 text-slate-400">
-													<div className="flex gap-2">
-														<UsersIcon className="h-4 w-4" />
-														<span className="text-sm leading-5 font-normal">
-															*120 Students
+												)}
+												<div className="px-4 py-2 flex flex-wrap-reverse gap-x-4 gap-y-2 items-center justify-between">
+													<div className="flex gap-2 items-center">
+														<span class="inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/30 capitalize">
+															{cohort?.mode}
+														</span>
+														<span
+															class={classNames(
+																"inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset capitalize",
+																typeMap[
+																	cohortType
+																].color
+															)}
+														>
+															{
+																typeMap[
+																	cohortType
+																].label
+															}
 														</span>
 													</div>
-													{cohort.duration ? (
-														<div className="flex gap-2">
-															<CalendarDaysIcon className="h-4 w-4" />
-															<span className="text-sm leading-5 font-normal">
-																{format(
-																	new Date(
-																		cohort.duration.startDate
-																	),
-																	"LLL yyyy"
-																)}{" "}
-																-{" "}
-																{format(
-																	new Date(
-																		cohort.duration.endDate
-																	),
-																	"LLL yyyy"
-																)}
-															</span>
-														</div>
+													{cohort?.duration
+														?.startDate ? (
+														<span className="text-purple-400 text-xs">
+															{format(
+																new Date(
+																	cohort?.duration?.startDate
+																),
+																"LLL yyyy"
+															)}
+														</span>
 													) : null}
 												</div>
-											</Link>
-										</div>
+											</div>
+											<div className="flex flex-col">
+												<div className="px-4 py-2 flex items-center justify-center gap-4 bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-400">
+													<span className="text-xs leading-5 font-medium">
+														{cohort?.uid ?? ""}
+													</span>
+													{/* <span>·</span>
+													<span className="text-xs leading-5 font-medium whitespace-nowrap">
+														{cohort?.totalStudents ??
+															0}{" "}
+														Users
+													</span> */}
+												</div>
+												<div className="p-4 flex items-center gap-4">
+													{cohort?.icon ? (
+														<div className="rounded-md overflow-hidden border border-neutral-200 dark:border-yellow-400/20 h-10 w-10 relative aspect-square flex-shrink-0">
+															<Image
+																src={
+																	cohort?.icon
+																}
+																alt={
+																	cohort?.title
+																}
+																fill
+																priority
+															/>
+														</div>
+													) : (
+														<div className="rounded-md overflow-hidden border border-neutral-200 dark:border-neutral-700 h-10 w-10 relative aspect-square flex-shrink-0">
+															<Image
+																src={`/favicon.ico`}
+																alt={
+																	cohort?.title
+																}
+																fill
+																className="opacity-10"
+															/>
+														</div>
+													)}
+													<div className="text-sm leading-5 font-medium">
+														{cohort?.title ?? ""}
+													</div>
+												</div>
+											</div>
+										</Link>
 									)
-								)}
+								})}
 						</div>
 					</div>
 				) : (
