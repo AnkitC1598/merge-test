@@ -15,7 +15,15 @@ const tabVisibility = {
 	default: ["chat", "profile", "settings"],
 	cohort: ["chat", "drive", "users", "profile", "settings"],
 	term: ["chat", "drive", "users", "profile", "settings"],
-	subject: ["chat", "drive", "users", "profile", "settings"],
+	subject: [
+		"chat",
+		"discussions",
+		"drive",
+		"quiz",
+		"users",
+		"profile",
+		"settings",
+	],
 	chapter: [
 		"chat",
 		"discussions",
