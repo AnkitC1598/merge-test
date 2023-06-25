@@ -1,5 +1,23 @@
 # Changelog
 
+### [0.4.11](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.10...v0.4.11) (2023-06-25)
+
+
+### 🎨 Styles
+
+* cohort card ui updated ([f651628](https://github.com/LetsUpgrade-Labs/lisa-student/commit/f651628ed3aab75b4da34d2e963fa98ab6f2d13c))
+
+
+### :recycle: Code Refactoring
+
+* current width props passed in plugins ([04fcab6](https://github.com/LetsUpgrade-Labs/lisa-student/commit/04fcab67f36a3aabcc9dc2b4d153c851c06a0ddf))
+* minor sidebar width handling logic update w/ dashboard labels updated ([5f3eef8](https://github.com/LetsUpgrade-Labs/lisa-student/commit/5f3eef8d4ddb7f0a068d3afc75d1ed3ac7effc4e))
+
+
+### ⬆️ Packages Upgrades
+
+* **plugins:** plugins submodule upgraded ([86ea682](https://github.com/LetsUpgrade-Labs/lisa-student/commit/86ea682a2191ee04c23350dd69081d0afed378d8))
+
 ### [0.4.10](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.9...v0.4.10) (2023-06-25)
 
 
