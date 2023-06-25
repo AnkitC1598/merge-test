@@ -1,5 +1,21 @@
 # Changelog
 
+### [0.4.10](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.9...v0.4.10) (2023-06-25)
+
+
+### 🎨 Styles
+
+* resizable handle style added ([1584b68](https://github.com/LetsUpgrade-Labs/lisa-student/commit/1584b680efe66573617f6a644525cfd361c7ca0c))
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([31f5d22](https://github.com/LetsUpgrade-Labs/lisa-student/commit/31f5d22ee20750fd684d0740fbcc101bbd02c7fd))
+* **plugins:** plugins submodule upgraded ([a0b7266](https://github.com/LetsUpgrade-Labs/lisa-student/commit/a0b72664399c7dc1e194ed981a772fbc6ef7a2ce))
+* **plugins:** plugins submodule upgraded ([e22c14f](https://github.com/LetsUpgrade-Labs/lisa-student/commit/e22c14f6ec1698a267469e76803ff68bd4acfbfd))
+* **plugins:** plugins submodule upgraded ([2f661a2](https://github.com/LetsUpgrade-Labs/lisa-student/commit/2f661a20e45a60a3b59e1259db669470744ece04))
+* **submodules:** plugins & content submodules upgraded ([60543f7](https://github.com/LetsUpgrade-Labs/lisa-student/commit/60543f717e3f64d7d14dd21efbc24b31506753ec))
+
 ### [0.4.9](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.8...v0.4.9) (2023-06-14)
 
 
