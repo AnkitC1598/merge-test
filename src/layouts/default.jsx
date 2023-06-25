@@ -70,8 +70,9 @@ const Default = ({ children }) => {
 		sideBarOpen: store.sideBarOpen,
 		dispatchToPlugins: store.dispatch,
 	}))
-	const [sidebarWidth, setSidebarWidth] = useState()
 	const idType = getCurrentLevel(currentHierarchy, router.query)
+
+	const [viewWidth, setViewWidth] = useState("70%")
 
 	const enableFocusMode = () => {
 		dispatchToPlugins({
@@ -100,10 +101,18 @@ const Default = ({ children }) => {
 		return tabVisibility[Object.keys(ids).at(-1) ?? "default"]
 	}, [currentHierarchy, router])
 
+	const handleResize = () => {
+		setViewWidth(
+			document.getElementById("mainContainer").clientWidth + "px"
+		)
+	}
+
 	useEffect(() => {
-		if (router.isReady)
-			setSidebarWidth(document.querySelector(".mainSection").clientWidth)
-	}, [router, sideBarOpen])
+		handleResize()
+		new ResizeObserver(handleResize).observe(
+			document.getElementById("mainContainer")
+		)
+	}, [])
 
 	return (
 		<>
@@ -132,13 +141,10 @@ const Default = ({ children }) => {
 						right: "0px",
 					},
 				}}
-				onResize={() => {
-					setSidebarWidth(
-						document.querySelector(".mainSection").clientWidth
-					)
-				}}
+				onResize={handleResize}
 			>
 				<div
+					id="mainContainer"
 					className={classNames(
 						"mainSection @container w-full h-full flex flex-col bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-300 dark:border-neutral-700 transition-all duration-500 ease-in-out",
 						!sideBarOpen && "sm:w-excludeSidebarIcon"
@@ -339,7 +345,7 @@ const Default = ({ children }) => {
 				enabledSections={enabledSections}
 				defaultSection={enabledSections[0]}
 				currentHierarchy={currentHierarchy}
-				sidebarWidth={sidebarWidth}
+				viewWidth={viewWidth}
 			/>
 		</>
 	)
