@@ -183,7 +183,10 @@ const Default = ({ children }) => {
 													/>
 													<Image
 														className="hidden dark:block object-contain object-left"
-														src={orgInfo?.logoDark}
+														src={
+															orgInfo?.logoDark ??
+															orgInfo?.logo
+														}
 														alt={orgInfo?.name}
 														fill
 														priority
