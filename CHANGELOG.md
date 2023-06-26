@@ -1,5 +1,36 @@
 # Changelog
 
+### [0.4.13](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.12...v0.4.13) (2023-06-26)
+
+
+### * Chores
+
+* label changed from RichText to Text ([6623d3a](https://github.com/LetsUpgrade-Labs/lisa-student/commit/6623d3ab8485f865576612a7644ebc50049ad596))
+
+
+### 🎨 Styles
+
+* cohort card base bg color updated ([2af3102](https://github.com/LetsUpgrade-Labs/lisa-student/commit/2af310218462e22689fe6ce9224456a6fa1d2950))
+
+
+### 🐛 Bug Fixes
+
+* added missing yt content type & added optional chaining for sidebar width ([e0c0415](https://github.com/LetsUpgrade-Labs/lisa-student/commit/e0c041590055f2115ef10ecba3ad29756c267f1e))
+* dark mode logo key updated ([0ffe732](https://github.com/LetsUpgrade-Labs/lisa-student/commit/0ffe7327be146ce6e17a7c9f70b0fc2aa7c1fd73))
+* fallback to light logo added ([009f044](https://github.com/LetsUpgrade-Labs/lisa-student/commit/009f04464a6cca98b1373504e0789832aaa75437))
+* resizing of sidebar w/ props fixed ([4056488](https://github.com/LetsUpgrade-Labs/lisa-student/commit/405648843b0894f958b1093c6dc07d350b436fc3))
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([6206934](https://github.com/LetsUpgrade-Labs/lisa-student/commit/6206934aaf8cba298642b9e8dd2a09cf80980237))
+* **content:** content submodule upgraded ([1026ccc](https://github.com/LetsUpgrade-Labs/lisa-student/commit/1026ccca7775e5a0b93ada41ac748b801a5d01f7))
+* **plugins:** plugins submodule upgraded ([ae3883a](https://github.com/LetsUpgrade-Labs/lisa-student/commit/ae3883a2692065bc9693099d4c014f2063f4ceb4))
+* **plugins:** plugins submodule upgraded ([6f908d9](https://github.com/LetsUpgrade-Labs/lisa-student/commit/6f908d99d6fa6a051ff6b4c251f4546033e9c7f3))
+* **plugins:** plugins submodule upgraded ([814434c](https://github.com/LetsUpgrade-Labs/lisa-student/commit/814434c0758175410782e8bb9a3ad7cf0205433f))
+* **plugins:** plugins submodule upgraded w/ required changes ([8728802](https://github.com/LetsUpgrade-Labs/lisa-student/commit/87288028389b2e65ac643ac47ed883d60629f30e))
+* **submodules:** plugins & content submodules upgraded ([ea4212e](https://github.com/LetsUpgrade-Labs/lisa-student/commit/ea4212ef710d32b255930c11078199f5b3589ded))
+
 ### [0.4.12](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.11...v0.4.12) (2023-06-25)
 
 
