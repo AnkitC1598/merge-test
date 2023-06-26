@@ -111,7 +111,8 @@ const Default = ({ children }) => {
 
 	const handleResize = () => {
 		setViewWidth(
-			document.getElementById("mainContainer")?.clientWidth ?? 0 + "px"
+			`${document.getElementById("mainContainer")?.clientWidth ?? 0}` +
+				"px"
 		)
 	}
 
