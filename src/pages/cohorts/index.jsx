@@ -1,5 +1,4 @@
 import { classNames } from "@/web-core/src/utils"
-import { CalendarDaysIcon, UsersIcon } from "@heroicons/react/20/solid"
 import { RectangleStackIcon } from "@heroicons/react/24/solid"
 import { format } from "date-fns"
 import Image from "next/image"
@@ -102,7 +101,7 @@ const Cohorts = ({ preview = false }) => {
 										<Link
 											key={cohort?._id}
 											href={`/cohorts/${cohort?._id}`}
-											className="flex flex-col col-span-1 rounded-md bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow hover:shadow-md hover:border-neutral-200 dark:shadow-neutral-800 divide-y divide-purple-100 dark:divide-neutral-700 transition-all duration-300 ease-in-out group font-medium overflow-hidden"
+											className="flex flex-col col-span-1 rounded-md bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow hover:shadow-md hover:border-neutral-200 dark:shadow-neutral-800 divide-y divide-purple-100 dark:divide-neutral-700 transition-all duration-300 ease-in-out group font-medium overflow-hidden"
 										>
 											<div className="flex flex-col">
 												{cohort?.coverImage ? (
