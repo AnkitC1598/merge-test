@@ -1,6 +1,6 @@
 import Session from "@/content/src/pages"
 import { useMeetingEmitter } from "@/plugins/src/sockets/emitters"
-import { usePluginsSocketStore } from "@/plugins/src/store"
+import { usePluginsSocketStore, usePluginsStore } from "@/plugins/src/store"
 import { classNames } from "@/web-core/src/utils"
 import {
 	Bars3CenterLeftIcon,
@@ -272,6 +272,7 @@ const SessionList = () => {
 	const [query, setQuery] = useState("")
 	const overflowRef = useRef()
 	const currentHierarchy = useStore(store => store.currentHierarchy)
+	const dispatch = usePluginsStore(store => store.dispatch)
 
 	const { data: sessions, isFetching } = useGetAllSessions()
 
@@ -295,6 +296,14 @@ const SessionList = () => {
 		}
 		return null
 	}, [currentHierarchy, sessions])
+
+	useEffect(() => {
+		dispatch({
+			type: "SET_DRIVE_NAV",
+			payload: "auto",
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [router.asPath])
 
 	return (
 		<>
