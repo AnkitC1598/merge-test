@@ -131,11 +131,11 @@ const Cohorts = ({ preview = false }) => {
 												)}
 												<div className="px-4 py-2 flex flex-wrap-reverse gap-x-4 gap-y-2 items-center justify-between">
 													<div className="flex gap-2 items-center">
-														<span class="inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/30 capitalize">
+														<span className="inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/30 capitalize">
 															{cohort?.mode}
 														</span>
 														<span
-															class={classNames(
+															className={classNames(
 																"inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset capitalize",
 																typeMap[
 																	cohortType

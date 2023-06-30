@@ -390,7 +390,7 @@ const SessionList = () => {
 						</div>
 						<div className="@container/session p-4 overflow-y-scroll scrollbar">
 							{filteredSessions && filteredSessions.length ? (
-								<div className="gap-4 grid @5xl/session:grid-cols-5 @4xl/session:grid-cols-4 @md/session:grid-cols-3 @sm/session:grid-cols-2 grid-cols-1">
+								<div className="gap-4 grid @4xl/session:grid-cols-4 @md/session:grid-cols-3 @sm/session:grid-cols-2 grid-cols-1">
 									<Sessions sessions={filteredSessions} />
 								</div>
 							) : (
@@ -443,7 +443,7 @@ const CohortDataWrapper = () => {
 					{ label: cohortTitle },
 				]}
 			/>
-			<div className="@lg:px-8 px-2 flex flex-1">
+			<div className="flex flex-1">
 				{hierarchy ? (
 					hierarchy !== "session" ? (
 						<CurriculumList hierarchy={hierarchy} />
