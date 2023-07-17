@@ -41,9 +41,10 @@ Router.events.on("routeChangeError", () => nprogress.done())
 
 const AppWithQuery = ({ Component, pageProps }) => {
 	const router = useRouter()
-	const { userId, orgId } = useStore(store => ({
+	const { userId, orgId, orgName } = useStore(store => ({
 		userId: store.user?._id ?? null,
 		orgId: store.orgInfo?.orgId ?? null,
+		orgName: store.orgInfo?.name ?? null,
 	}))
 	const Layout = Layouts[Component.layout] ?? Layouts.default
 
@@ -62,7 +63,7 @@ const AppWithQuery = ({ Component, pageProps }) => {
 	return (
 		<>
 			<Head>
-				<title>Lisa</title>
+				<title>Dashboard - {orgName ?? "Lisa"}</title>
 				<meta
 					name="description"
 					content="Lisa"

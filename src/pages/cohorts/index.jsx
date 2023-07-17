@@ -1,6 +1,7 @@
 import { classNames } from "@/web-core/src/utils"
 import { RectangleStackIcon } from "@heroicons/react/24/solid"
 import { format } from "date-fns"
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect } from "react"
@@ -24,7 +25,10 @@ const typeMap = {
 }
 
 const Cohorts = ({ preview = false }) => {
-	const dispatch = useStore(store => store.dispatch)
+	const { dispatch, orgName } = useStore(store => ({
+		dispatch: store.dispatch,
+		orgName: store.orgInfo.name,
+	}))
 
 	const { data: cohorts } = useGetAllCohorts()
 
@@ -51,6 +55,9 @@ const Cohorts = ({ preview = false }) => {
 
 	return (
 		<>
+			<Head>
+				<title>Cohorts - {orgName ?? "Lisa"}</title>
+			</Head>
 			{preview ? null : (
 				<Breadcrumb breadcrumbs={[{ label: "Cohorts" }]} />
 			)}

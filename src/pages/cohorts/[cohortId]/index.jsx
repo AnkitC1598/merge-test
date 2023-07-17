@@ -9,6 +9,7 @@ import {
 	MagnifyingGlassIcon,
 	Squares2X2Icon,
 } from "@heroicons/react/20/solid"
+import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useMemo, useRef, useState } from "react"
@@ -71,7 +72,11 @@ const CurriculumList = ({ hierarchy }) => {
 	const overflowRef = useRef()
 	const [query, setQuery] = useState("")
 	const [viewMode, setViewMode] = useState("grid")
-	const currentHierarchy = useStore(store => store.currentHierarchy)
+	const { currentHierarchy, orgName, cohortTitle } = useStore(store => ({
+		currentHierarchy: store.currentHierarchy,
+		orgName: store.orgInfo?.name ?? null,
+		cohortTitle: store.cohortTitle ?? null,
+	}))
 
 	const {
 		icon: Icon,
@@ -112,6 +117,15 @@ const CurriculumList = ({ hierarchy }) => {
 				</div>
 			) : (
 				<>
+					<Head>
+						<title>
+							{hierarchy ===
+								hierarchyTypes[currentHierarchy][1] ?? "cohort"
+								? null
+								: hierarchyData?.title + " -" ?? ""}{" "}
+							{cohortTitle ?? "Cohort"} - {orgName ?? "Lisa"}
+						</title>
+					</Head>
 					<div className="h-full flex-1 flex flex-col relative">
 						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
@@ -271,7 +285,11 @@ const SessionList = () => {
 	const router = useRouter()
 	const [query, setQuery] = useState("")
 	const overflowRef = useRef()
-	const currentHierarchy = useStore(store => store.currentHierarchy)
+	const { currentHierarchy, cohortTitle, orgName } = useStore(store => ({
+		currentHierarchy: store.currentHierarchy,
+		cohortTitle: store.cohortTitle ?? null,
+		orgName: store.orgInfo?.name ?? null,
+	}))
 	const dispatch = usePluginsStore(store => store.dispatch)
 
 	const { data: sessions, isFetching } = useGetAllSessions()
@@ -313,6 +331,12 @@ const SessionList = () => {
 				</div>
 			) : (
 				<>
+					<Head>
+						<title>
+							{prevTitle ?? ""} - {cohortTitle ?? "Cohort"} -{" "}
+							{orgName ?? "Lisa"}
+						</title>
+					</Head>
 					<div className="h-full flex-1 flex flex-col relative">
 						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
@@ -419,9 +443,10 @@ const CohortInfoWrapper = ({ children }) => {
 
 const CohortDataWrapper = () => {
 	const router = useRouter()
-	const { currentHierarchy, cohortTitle } = useStore(store => ({
+	const { currentHierarchy, cohortTitle, orgName } = useStore(store => ({
 		currentHierarchy: store.currentHierarchy,
 		cohortTitle: store.cohortTitle,
+		orgName: store.orgInfo?.name ?? null,
 	}))
 
 	const hierarchy = useMemo(() => {
@@ -437,6 +462,12 @@ const CohortDataWrapper = () => {
 
 	return (
 		<>
+			<Head>
+				<title>
+					{hierarchy ? null : "Session - "}
+					{cohortTitle ?? "Cohort"} - {orgName + "" ?? "Lisa"}
+				</title>
+			</Head>
 			<Breadcrumb
 				breadcrumbs={[
 					{ label: "Cohorts", to: "/cohorts" },
