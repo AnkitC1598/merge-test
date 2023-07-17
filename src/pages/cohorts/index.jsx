@@ -93,7 +93,8 @@ const Cohorts = ({ preview = false }) => {
 								?.slice(0, preview ? 5 : Infinity)
 								?.map(cohort => {
 									if (!cohort) return null
-									cohort = cohort.cohort
+									cohort = cohort?.cohort
+									if (!cohort?.type) return null
 									const cohortType = cohort.type
 										.map(t => t[0])
 										.join("")
