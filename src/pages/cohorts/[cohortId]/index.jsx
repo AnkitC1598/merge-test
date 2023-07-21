@@ -1,5 +1,8 @@
 import Session from "@/content/src/pages"
-import { useMeetingEmitter } from "@/plugins/src/sockets/emitters"
+import {
+	useHandRaiseEmitter,
+	useMeetingEmitter,
+} from "@/plugins/src/sockets/emitters"
 import { usePluginsSocketStore, usePluginsStore } from "@/plugins/src/store"
 import { classNames } from "@/web-core/src/utils"
 import {
@@ -463,18 +466,43 @@ const SessionView = () => {
 		user: store.user,
 		currentHierarchy: store.currentHierarchy,
 	}))
-	const { connected, socket, roomId } = usePluginsSocketStore(store => ({
-		connected: store.meetingSocket.connected,
-		socket: store.meetingSocket.socket,
-		roomId: store.meetingSocket.roomId,
+	const {
+		meetingSocketConnected,
+		meetingSocket,
+		meetingSocketRoomId,
+		handRaiseSocketConnected,
+		handRaiseSocket,
+		handRaiseSocketRoomId,
+	} = usePluginsSocketStore(store => ({
+		meetingSocketConnected: store.meetingSocket.connected,
+		meetingSocket: store.meetingSocket.socket,
+		meetingSocketRoomId: store.meetingSocket.roomId,
+		handRaiseSocketConnected: store.handRaiseSocket.connected,
+		handRaiseSocket: store.handRaiseSocket.socket,
+		handRaiseSocketRoomId: store.handRaiseSocket.roomId,
 	}))
 	const { joinMeetingSocket } = useMeetingEmitter()
+	const { joinHandRaiseSocket } = useHandRaiseEmitter()
 
 	useEffect(() => {
-		if (roomId === null && !connected && socket)
+		if (
+			meetingSocketRoomId === null &&
+			!meetingSocketConnected &&
+			meetingSocket
+		)
 			joinMeetingSocket({ currentHierarchy })
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [roomId, connected, socket])
+	}, [meetingSocketRoomId, meetingSocketConnected, meetingSocket])
+
+	useEffect(() => {
+		if (
+			handRaiseSocketRoomId === null &&
+			!handRaiseSocketConnected &&
+			handRaiseSocket
+		)
+			joinHandRaiseSocket({ currentHierarchy })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [handRaiseSocketRoomId, handRaiseSocketConnected, handRaiseSocket])
 
 	return (
 		<div className="sm:pt-8 pt-4 flex-1 flex">
