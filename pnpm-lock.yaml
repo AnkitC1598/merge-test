@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -68,6 +68,9 @@ dependencies:
   framer-motion:
     specifier: ^10.12.8
     version: 10.12.8(react-dom@18.2.0)(react@18.2.0)
+  good-grid:
+    specifier: ^1.1.1
+    version: 1.1.1
   howler:
     specifier: ^2.2.3
     version: 2.2.3
@@ -3064,6 +3067,11 @@ packages:
       merge2: 1.4.1
       slash: 4.0.0
     dev: true
+
+  /good-grid@1.1.1:
+    resolution: {integrity: sha512-kT6+U+pY3bYOapCCFaWVAEMW9npHqmWNTaGE3S/KIIHTj8WSBQkTQlsHxOuoyeAwKE+3xTNgImT1NyiTK8uCOg==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
