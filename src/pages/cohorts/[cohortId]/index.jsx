@@ -462,8 +462,9 @@ const CohortDataWrapper = () => {
 }
 
 const SessionView = () => {
-	const { user, currentHierarchy } = useStore(store => ({
+	const { user, orgInfo, currentHierarchy } = useStore(store => ({
 		user: store.user,
+		orgInfo: store.orgInfo,
 		currentHierarchy: store.currentHierarchy,
 	}))
 	const {
@@ -508,6 +509,7 @@ const SessionView = () => {
 		<div className="sm:pt-8 pt-4 flex-1 flex">
 			<Session
 				userData={user}
+				orgInfo={orgInfo}
 				currentHierarchy={currentHierarchy}
 			/>
 		</div>
