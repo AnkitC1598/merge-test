@@ -314,7 +314,7 @@ const SessionList = () => {
 			) : (
 				<>
 					<div className="h-full flex-1 flex flex-col relative">
-						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-[45px] z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 								<Back />
 								<div
@@ -442,6 +442,7 @@ const CohortDataWrapper = () => {
 					{ label: "Cohorts", to: "/cohorts" },
 					{ label: cohortTitle },
 				]}
+				className="border-t bg-neutral-50 dark:bg-neutral-900 z-50 sticky top-0"
 			/>
 			<div className="flex flex-1">
 				{hierarchy ? (
