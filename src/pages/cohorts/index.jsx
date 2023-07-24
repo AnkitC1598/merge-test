@@ -52,7 +52,10 @@ const Cohorts = ({ preview = false }) => {
 	return (
 		<>
 			{preview ? null : (
-				<Breadcrumb breadcrumbs={[{ label: "Cohorts" }]} />
+				<Breadcrumb
+					breadcrumbs={[{ label: "Cohorts" }]}
+					className="border-t bg-neutral-50 dark:bg-neutral-900 z-50 sticky top-0"
+				/>
 			)}
 			<div
 				className={classNames(

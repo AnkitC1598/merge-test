@@ -1,8 +1,9 @@
 import { HomeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import { BreadcrumbItem } from "../../atoms"
+import { classNames } from "@/web-core/src/utils"
 
-const Breadcrumb = ({ breadcrumbs = [] }) => {
+const Breadcrumb = ({ breadcrumbs = [], className = "" }) => {
 	if (Object.prototype.toString.call(breadcrumbs) !== "[object Array]")
 		throw new Error("Breadcrumb: breadcrumbs must be an array")
 
@@ -41,7 +42,10 @@ const Breadcrumb = ({ breadcrumbs = [] }) => {
 				</ol>
 			</nav> */}
 			<nav
-				className="flex border-b border-neutral-200 dark:border-neutral-700 overflow-hidden"
+				className={classNames(
+					"flex border-b border-neutral-200 dark:border-neutral-700 overflow-hidden",
+					className
+				)}
 				aria-label="Breadcrumb"
 			>
 				<ol

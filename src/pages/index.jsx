@@ -34,7 +34,10 @@ const Home = () => {
 
 	return (
 		<>
-			<Breadcrumb breadcrumbs={[]} />
+			<Breadcrumb
+				breadcrumbs={[]}
+				className="border-t bg-neutral-50 dark:bg-neutral-900 z-50 sticky top-0"
+			/>
 			<div className="@lg:px-8 px-2 sm:pt-8 pt-4 flex flex-col gap-8 justify-start">
 				<div className="flex flex-col gap-0.5">
 					<h1 className="text-2xl leading-8 font-semibold">
