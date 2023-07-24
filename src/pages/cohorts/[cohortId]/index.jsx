@@ -7,7 +7,6 @@ import { usePluginsSocketStore, usePluginsStore } from "@/plugins/src/store"
 import { classNames } from "@/web-core/src/utils"
 import {
 	Bars3CenterLeftIcon,
-	BarsArrowUpIcon,
 	ChevronRightIcon,
 	MagnifyingGlassIcon,
 	Squares2X2Icon,
@@ -16,6 +15,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Back } from "~/components/atoms"
+import Loading from "~/components/atoms/Loading"
 import { Breadcrumb } from "~/components/molecules"
 import { Sessions } from "~/components/organisms"
 import {
@@ -110,13 +110,13 @@ const CurriculumList = ({ hierarchy }) => {
 	return (
 		<>
 			{isFetching ? (
-				<div className="flex h-full items-center justify-center">
-					Loading...
+				<div className="flex h-navScreen w-screen items-center justify-center">
+					<Loading />
 				</div>
 			) : (
 				<>
 					<div className="h-full flex-1 flex flex-col relative">
-						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+						<div className="p-4 px-4 sm:px-6 lg:px-8 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 								<Back />
 								<div
@@ -181,14 +181,15 @@ const CurriculumList = ({ hierarchy }) => {
 											name="search"
 											id="search"
 											autoComplete="off"
-											className="block md:min-w-40 w-full rounded-md border-0 bg-white/5 py-2 pl-10 pr-3.5 shadow-sm ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 rounded-r-none"
+											className="block md:min-w-40 w-full rounded-md border-0 bg-white/5 py-2 pl-10 pr-3.5 shadow-sm ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6"
+											// rounded-r-none"
 											placeholder="Search"
 											onChange={e =>
 												setQuery(e.target.value)
 											}
 										/>
 									</div>
-									<button
+									{/* <button
 										type="button"
 										disabled
 										className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 bg-white/5 disabled:cursor-not-allowed"
@@ -198,7 +199,7 @@ const CurriculumList = ({ hierarchy }) => {
 											aria-hidden="true"
 										/>
 										Sort
-									</button>
+									</button> */}
 								</div>
 								<button
 									className="h-full p-2.5 ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 bg-white/5 rounded-md hover:shadow-md"
@@ -222,7 +223,7 @@ const CurriculumList = ({ hierarchy }) => {
 								</button>
 							</div>
 						</div>
-						<div className="@container/curriculum p-4 h-full overflow-y-scroll scrollbar">
+						<div className="@container/curriculum p-4 px-4 sm:px-6 lg:px-8 h-full overflow-y-scroll scrollbar">
 							<div
 								className={classNames(
 									"gap-4",
@@ -311,13 +312,13 @@ const SessionList = () => {
 	return (
 		<>
 			{isFetching ? (
-				<div className="flex h-full items-center justify-center">
-					Loading...
+				<div className="flex h-navScreen w-screen items-center justify-center">
+					<Loading />
 				</div>
 			) : (
 				<>
 					<div className="h-full flex-1 flex flex-col relative">
-						<div className="p-4 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-[45px] z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
+						<div className="p-4 px-4 sm:px-6 lg:px-8 flex sm:flex-nowrap flex-wrap gap-4 justify-between items-center shadow-sm bg-neutral-50 dark:bg-neutral-900 sticky top-0 z-20 border-b-2 border-neutral-200 dark:border-neutral-700">
 							<div className="text-lg xl:max-w-1/2 w-full leading-6 font-medium flex space-x-2 items-center">
 								<Back />
 								<div
@@ -370,14 +371,15 @@ const SessionList = () => {
 											name="search"
 											id="search"
 											autoComplete="off"
-											className="block md:min-w-40 w-full rounded-md border-0 bg-white/5 py-2 pl-10 pr-3.5 shadow-sm ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 rounded-r-none"
+											className="block md:min-w-40 w-full rounded-md border-0 bg-white/5 py-2 pl-10 pr-3.5 shadow-sm ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6"
+											// rounded-r-none"
 											placeholder="Search"
 											onChange={e =>
 												setQuery(e.target.value)
 											}
 										/>
 									</div>
-									<button
+									{/* <button
 										type="button"
 										disabled
 										className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 bg-white/5 disabled:cursor-not-allowed"
@@ -387,11 +389,11 @@ const SessionList = () => {
 											aria-hidden="true"
 										/>
 										Sort
-									</button>
+									</button> */}
 								</div>
 							</div>
 						</div>
-						<div className="@container/session p-4 overflow-y-scroll scrollbar">
+						<div className="@container/session p-4 px-4 sm:px-6 lg:px-8 overflow-y-scroll scrollbar">
 							{filteredSessions && filteredSessions.length ? (
 								<div className="gap-4 grid @4xl/session:grid-cols-4 @md/session:grid-cols-3 @sm/session:grid-cols-2 grid-cols-1">
 									<Sessions sessions={filteredSessions} />
@@ -416,7 +418,12 @@ const CohortInfoWrapper = ({ children }) => {
 		disabled: currentHierarchy !== null,
 	})
 
-	if (isFetching) return <div>Loading...</div>
+	if (isFetching)
+		return (
+			<div className="w-full h-navScreen flex items-center justify-center">
+				<Loading />
+			</div>
+		)
 	return children
 }
 

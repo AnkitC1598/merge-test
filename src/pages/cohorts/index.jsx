@@ -66,7 +66,7 @@ const Cohorts = ({ preview = false }) => {
 				<div
 					className={classNames(
 						"flex gap-4 justify-between items-center",
-						preview ? "p-4" : "sm:pt-8 pt-4"
+						preview ? "py-4" : "sm:pt-8 pt-4"
 					)}
 				>
 					<div className="flex gap-2">
@@ -88,7 +88,7 @@ const Cohorts = ({ preview = false }) => {
 					<div
 						className={classNames(
 							"@container/cohorts",
-							preview ? "p-4" : ""
+							preview ? "py-4" : ""
 						)}
 					>
 						<div className="gap-4 grid @2xl/cohorts:grid-cols-4 @md/cohorts:grid-cols-3 @sm/cohorts:grid-cols-2 grid-cols-1">
