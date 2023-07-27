@@ -75,20 +75,26 @@ const SessionCard = ({ session, type, makeRoute }) => {
 						>
 							{type.label}
 						</span>
-						{type.showStatus && status ? (
+						{status ? (
 							<span
 								className={
 									`${classNames(
 										"flex items-center gap-1 rounded-md px-2 py-0.5 font-medium ring-1 ring-inset capitalize",
-										statusColors[status],
-										status === "live" ? "animate-pulse" : ""
+										statusColors[status]
 									)}` + " text-xxs"
 								}
 							>
-								{status === "live" ? (
-									<span className="h-1 w-1 bg-red-700 dark:bg-red-400 rounded-full" />
-								) : null}
-								<span>{status}</span>
+								<span
+									className={classNames(
+										"flex items-center gap-1",
+										status === "live" ? "animate-pulse" : ""
+									)}
+								>
+									{status === "live" ? (
+										<span className="h-1 w-1 bg-red-700 dark:bg-red-400 rounded-full" />
+									) : null}
+									<span>{status}</span>
+								</span>
 							</span>
 						) : null}
 					</div>
