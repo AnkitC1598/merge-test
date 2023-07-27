@@ -104,8 +104,7 @@ const SessionCard = ({ session, type, makeRoute }) => {
 					<div className="flex gap-1 font-medium text-sm">
 						<span>{session.priority + 1}.</span>
 						<span className="@2xs/sessionCard:line-clamp-3 line-clamp-2">
-							{session?.title} adsasd asdasfasfasd asd fasdfasd
-							fasdf asdf asdf asdf
+							{session?.title}
 						</span>
 					</div>
 					{/* {type.progressBar ? (

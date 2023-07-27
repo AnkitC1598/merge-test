@@ -42,9 +42,10 @@ Router.events.on("routeChangeError", () => nprogress.done())
 
 const AppWithQuery = ({ Component, pageProps }) => {
 	const router = useRouter()
-	const { userId, orgId } = useStore(store => ({
+	const { userId, orgId, pageHierarchy } = useStore(store => ({
 		userId: store.user?._id ?? null,
 		orgId: store.orgInfo?.orgId ?? null,
+		pageHierarchy: store.pageHierarchy ?? null,
 	}))
 	const Layout = Layouts[Component.layout] ?? Layouts.default
 
@@ -98,7 +99,12 @@ const AppWithQuery = ({ Component, pageProps }) => {
 										exit="exitState"
 										transition="transitionState"
 										variants={compMotionConfig}
-										className="sm:pb-8 pb-4 min-h-full flex flex-col"
+										className={classNames(
+											"min-h-full flex flex-col",
+											pageHierarchy !== "inSession"
+												? "sm:pb-8 pb-4"
+												: ""
+										)}
 									>
 										<Component
 											{...pageProps}

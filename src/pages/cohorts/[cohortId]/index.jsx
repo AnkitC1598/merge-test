@@ -1,4 +1,5 @@
 import Session from "@/content/src/pages"
+import { useContentStore } from "@/content/src/store"
 import {
 	useHandRaiseEmitter,
 	useMeetingEmitter,
@@ -429,9 +430,10 @@ const CohortInfoWrapper = ({ children }) => {
 
 const CohortDataWrapper = () => {
 	const router = useRouter()
-	const { currentHierarchy, cohortTitle } = useStore(store => ({
+	const { currentHierarchy, cohortTitle, dispatch } = useStore(store => ({
 		currentHierarchy: store.currentHierarchy,
 		cohortTitle: store.cohortTitle,
+		dispatch: store.dispatch,
 	}))
 
 	const hierarchy = useMemo(() => {
@@ -444,6 +446,14 @@ const CohortDataWrapper = () => {
 		)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentHierarchy])
+
+	useEffect(() => {
+		dispatch({
+			type: "SET_STATE",
+			payload: { pageHierarchy: hierarchy ?? "inSession" },
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [hierarchy])
 
 	return (
 		<>
@@ -490,6 +500,8 @@ const SessionView = () => {
 		handRaiseSocket: store.handRaiseSocket.socket,
 		handRaiseSocketRoomId: store.handRaiseSocket.roomId,
 	}))
+	const hasEnded = useContentStore(store => store.session?.config?.hasEnded)
+
 	const { joinMeetingSocket } = useMeetingEmitter()
 	const { joinHandRaiseSocket } = useHandRaiseEmitter()
 
@@ -514,7 +526,13 @@ const SessionView = () => {
 	}, [handRaiseSocketRoomId, handRaiseSocketConnected, handRaiseSocket])
 
 	return (
-		<div className="sm:pt-8 pt-4 flex-1 flex">
+		<div
+			className={classNames(
+				"relative sm:pt-8 pt-4 flex-1 flex",
+				hasEnded ? "sm:pb-8 pb-4" : ""
+			)}
+		>
+			<div className="gridLockBlueBeams -z-20 absolute inset-x-0 top-0 h-full bg-no-repeat dark:mix-blend-color bg-center" />
 			<Session
 				userData={user}
 				orgInfo={orgInfo}
