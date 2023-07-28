@@ -143,7 +143,7 @@ const SessionCard = ({ session, type, makeRoute }) => {
 						</div>
 						<type.icon
 							className={classNames(
-								"w-1/4 aspect-square group-hover:scale-110 transition duration-300",
+								"w-1/4 aspect-square group-hover:scale-110 transition duration-300 opacity-50 dark:opacity-20",
 								type.colors.icon
 							)}
 						/>
