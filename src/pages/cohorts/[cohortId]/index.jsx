@@ -502,26 +502,37 @@ const SessionView = () => {
 	}))
 	const hasEnded = useContentStore(store => store.session?.config?.hasEnded)
 
-	const { joinMeetingSocket } = useMeetingEmitter()
-	const { joinHandRaiseSocket } = useHandRaiseEmitter()
+	const { joinMeetingSocket, leave: leaveMeetingSocket } = useMeetingEmitter()
+	const { joinHandRaiseSocket, leave: leaveHandRaiseSocket } =
+		useHandRaiseEmitter()
 
 	useEffect(() => {
 		if (
 			meetingSocketRoomId === null &&
-			!meetingSocketConnected &&
+			meetingSocketConnected &&
 			meetingSocket
 		)
 			joinMeetingSocket({ currentHierarchy })
+
+		return () => {
+			if (meetingSocketRoomId)
+				leaveMeetingSocket({ roomId: meetingSocketRoomId })
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [meetingSocketRoomId, meetingSocketConnected, meetingSocket])
 
 	useEffect(() => {
 		if (
 			handRaiseSocketRoomId === null &&
-			!handRaiseSocketConnected &&
+			handRaiseSocketConnected &&
 			handRaiseSocket
 		)
 			joinHandRaiseSocket({ currentHierarchy })
+
+		return () => {
+			if (handRaiseSocketRoomId)
+				leaveHandRaiseSocket({ roomId: handRaiseSocketRoomId })
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handRaiseSocketRoomId, handRaiseSocketConnected, handRaiseSocket])
 
