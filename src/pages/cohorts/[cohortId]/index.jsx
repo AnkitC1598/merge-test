@@ -338,8 +338,8 @@ const SessionList = () => {
 				<>
 					<Head>
 						<title>
-							{prevTitle ?? ""} - {cohortTitle ?? "Cohort"} -{" "}
-							{orgName ?? "Lisa"}
+							{prevTitle ? `${prevTitle} - ` : ""}
+							{cohortTitle ?? "Cohort"} - {orgName ?? "Lisa"}
 						</title>
 					</Head>
 					<div className="h-full flex-1 flex flex-col relative">
@@ -484,12 +484,13 @@ const CohortDataWrapper = () => {
 
 	return (
 		<>
-			<Head>
-				<title>
-					{hierarchy ? null : "Session - "}
-					{cohortTitle ?? "Cohort"} - {orgName + "" ?? "Lisa"}
-				</title>
-			</Head>
+			{hierarchy ? (
+				<Head>
+					<title>
+						{cohortTitle ?? "Cohort"} - {orgName + "" ?? "Lisa"}
+					</title>
+				</Head>
+			) : null}
 			<Breadcrumb
 				breadcrumbs={[
 					{ label: "Cohorts", to: "/cohorts" },

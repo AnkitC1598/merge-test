@@ -1,14 +1,16 @@
+import Head from "next/head"
 import { useEffect } from "react"
+import Loading from "~/components/atoms/Loading"
 import { Breadcrumb } from "~/components/molecules"
 import { Sessions } from "~/components/organisms"
 import { useGetDashboardSessions } from "~/hooks/queries/dashboard"
 import { useStore } from "~/store"
 import Cohorts from "./cohorts"
-import Loading from "~/components/atoms/Loading"
 
 const Home = () => {
-	const { user, dispatch } = useStore(store => ({
+	const { user, orgName, dispatch } = useStore(store => ({
 		user: store.user,
+		orgName: store.orgInfo?.name ?? null,
 		dispatch: store.dispatch,
 	}))
 
@@ -35,6 +37,21 @@ const Home = () => {
 
 	return (
 		<>
+			<Head>
+				<title>Dashboard - {orgName ?? "Lisa"}</title>
+				<meta
+					name="description"
+					content={orgName ?? "Lisa"}
+				/>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
+				<link
+					rel="icon"
+					href="/favicon.ico"
+				/>
+			</Head>
 			<Breadcrumb
 				breadcrumbs={[]}
 				className="border-t bg-neutral-50 dark:bg-neutral-900 z-50 sticky top-0"
