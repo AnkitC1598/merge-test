@@ -68,27 +68,33 @@ const SessionCard = ({ session, type, makeRoute }) => {
 						<span
 							className={
 								`${classNames(
-									"flex whitespace-nowrap items-center text-center rounded-md px-2 py-0.5 ring-1 ring-inset capitalize",
+									"flex whitespace-nowrap items-center text-center rounded-md px-2 py-0.5 ring-1 ring-inset capitalize font-medium",
 									type.colors.bgText
-								)}` + " text-xxs"
+								)}` + " text-xs"
 							}
 						>
 							{type.label}
 						</span>
-						{type.showStatus && status ? (
+						{status ? (
 							<span
 								className={
 									`${classNames(
 										"flex items-center gap-1 rounded-md px-2 py-0.5 font-medium ring-1 ring-inset capitalize",
-										statusColors[status],
-										status === "live" ? "animate-pulse" : ""
+										statusColors[status]
 									)}` + " text-xxs"
 								}
 							>
-								{status === "live" ? (
-									<span className="h-1 w-1 bg-red-700 dark:bg-red-400 rounded-full" />
-								) : null}
-								<span>{status}</span>
+								<span
+									className={classNames(
+										"flex items-center gap-1",
+										status === "live" ? "animate-pulse" : ""
+									)}
+								>
+									{status === "live" ? (
+										<span className="h-1 w-1 bg-red-700 dark:bg-red-400 rounded-full" />
+									) : null}
+									<span>{status}</span>
+								</span>
 							</span>
 						) : null}
 					</div>
@@ -100,8 +106,8 @@ const SessionCard = ({ session, type, makeRoute }) => {
 						</span>
 					</div>
 				</div>
-				<div className="relative overflow-hidden min-h-32 gap-2 flex-1 flex flex-col justify-between px-3 py-4">
-					<div className="flex gap-1 font-semibold text-sm">
+				<div className="relative overflow-hidden min-h-32 gap-2 flex-1 flex flex-col justify-between px-3 py-4 z-10">
+					<div className="flex gap-1 font-medium text-sm">
 						<span>{session.priority + 1}.</span>
 						<span className="@2xs/sessionCard:line-clamp-3 line-clamp-2">
 							{session?.title}
@@ -126,7 +132,7 @@ const SessionCard = ({ session, type, makeRoute }) => {
 							</div>
 						</div>
 					) : null} */}
-					<div className="absolute inset-0 -bottom-2 z-0 flex items-end justify-between group">
+					<div className="absolute inset-0 z-0 flex items-end justify-between group">
 						<div className="flex-1 aspect-video opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
 							<div
 								className={classNames(
@@ -137,7 +143,7 @@ const SessionCard = ({ session, type, makeRoute }) => {
 						</div>
 						<type.icon
 							className={classNames(
-								"w-1/4 aspect-square group-hover:scale-110 transition duration-300",
+								"w-1/4 aspect-square group-hover:scale-110 transition duration-300 opacity-50 dark:opacity-20",
 								type.colors.icon
 							)}
 						/>
@@ -145,19 +151,19 @@ const SessionCard = ({ session, type, makeRoute }) => {
 				</div>
 				<div className="px-3 py-2 flex justify-between items-center gap-4">
 					<div className="flex flex-wrap flex-1 gap-x-1 gap-y-0.5">
-						<span className="text-xs">
+						<span className="text-xs font-normal">
 							{format(
 								new Date(session?.startDate),
 								"dd MMM yyyy"
 							)}
 							,
 						</span>
-						<span className="font-semibold text-xs">
+						<span className="font-medium text-xs">
 							{format(new Date(session?.startDate), "hh:mm aa")}
 						</span>
 					</div>
-					{!session?.hasAttended ? (
-						<span className="inline-flex items-center rounded-md px-2 py-0.5 text-xxs bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/10 dark:bg-green-400/10 dark:text-green-400 dark:ring-green-400/20 capitalize">
+					{session?.hasAttended ? (
+						<span className="inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/10 dark:bg-green-400/10 dark:text-green-400 dark:ring-green-400/20 capitalize">
 							Attended
 						</span>
 					) : null}

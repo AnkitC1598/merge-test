@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.4.14](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.13...v0.4.14) (2023-07-19)
+
+
+### 🎨 Styles
+
+* session card ui updated ([10d40a4](https://github.com/LetsUpgrade-Labs/lisa-student/commit/10d40a4e3b2d3aa796c644febeeb3cb4a18a1e6a))
+
+
+### 🐛 Bug Fixes
+
+* fixed cohorts type error in cohorts page ([a41093d](https://github.com/LetsUpgrade-Labs/lisa-student/commit/a41093dd1b863c5975e6c415cab714d4f2279564))
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([7b547cf](https://github.com/LetsUpgrade-Labs/lisa-student/commit/7b547cf38a58ec01c37fc215d5d1afbf98bd5dcb))
+* **content:** content submodule upgraded ([e9d6db2](https://github.com/LetsUpgrade-Labs/lisa-student/commit/e9d6db2b6391488a1545a4fda5155ec5a2a84b44))
+* **plugins:** plugins submodule upgraded ([3873ece](https://github.com/LetsUpgrade-Labs/lisa-student/commit/3873ece5c6fe5f13c78f320ee2b57187fc749de6))
+* **plugins:** plugins submodule upgraded ([584203a](https://github.com/LetsUpgrade-Labs/lisa-student/commit/584203ace5f3915a0836a9e07500a044e7b3bbf6))
+* **plugins:** plugins submodule upgraded ([b0b82cc](https://github.com/LetsUpgrade-Labs/lisa-student/commit/b0b82cca218f2a317257c9806c79104adb41830a))
+* **submodules:** plugins & content submodules upgraded ([e1da4b3](https://github.com/LetsUpgrade-Labs/lisa-student/commit/e1da4b3218dbdd99785af66a9a54d4c54a006deb))
+* **submodules:** plugins & content submodules upgraded ([5dc50de](https://github.com/LetsUpgrade-Labs/lisa-student/commit/5dc50de773dca20f6b579bd42178f39c55c831fe))
+
 ### [0.4.13](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.12...v0.4.13) (2023-06-26)
 
 

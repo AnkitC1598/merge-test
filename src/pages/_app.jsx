@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { AnimatePresence, motion } from "framer-motion"
 import { Inter } from "next/font/google"
 import Head from "next/head"
+import Image from "next/image"
 import { Router, useRouter } from "next/router"
 import nprogress from "nprogress"
 import "nprogress/nprogress.css"
@@ -41,10 +42,11 @@ Router.events.on("routeChangeError", () => nprogress.done())
 
 const AppWithQuery = ({ Component, pageProps }) => {
 	const router = useRouter()
-	const { userId, orgId, orgName } = useStore(store => ({
+	const { userId, orgId, orgName, pageHierarchy } = useStore(store => ({
 		userId: store.user?._id ?? null,
 		orgId: store.orgInfo?.orgId ?? null,
-		orgName: store.orgInfo?.name ?? null,
+		orgName: store.orgInfo?.orgName ?? null,
+		pageHierarchy: store.pageHierarchy ?? null,
 	}))
 	const Layout = Layouts[Component.layout] ?? Layouts.default
 
@@ -98,7 +100,12 @@ const AppWithQuery = ({ Component, pageProps }) => {
 										exit="exitState"
 										transition="transitionState"
 										variants={compMotionConfig}
-										className="sm:pb-8 pb-4 min-h-full flex flex-col"
+										className={classNames(
+											"min-h-full flex flex-col",
+											pageHierarchy !== "inSession"
+												? "sm:pb-8 pb-4"
+												: ""
+										)}
 									>
 										<Component
 											{...pageProps}
@@ -111,7 +118,13 @@ const AppWithQuery = ({ Component, pageProps }) => {
 					) : (
 						<>
 							<div className="w-full px-2 lg:px-16 xl:px-20 bg-neutral-50 dark:bg-neutral-900 text-slate-900 dark:text-slate-200 flex items-center justify-center">
-								Loading...
+								<Image
+									alt="Loading..."
+									src={"/favicon.ico"}
+									className="animate-spin"
+									width={50}
+									height={50}
+								/>
 							</div>
 						</>
 					)}
@@ -173,7 +186,13 @@ const App = props => {
 				<AppWithQuery {...props} />
 			) : (
 				<div className="h-screen w-screen flex items-center justify-center bg-white dark:bg-neutral-900 text-slate-900 dark:text-slate-200">
-					<span>Loading...</span>
+					<Image
+						alt="Loading..."
+						src={"/favicon.ico"}
+						className="animate-spin"
+						width={50}
+						height={50}
+					/>
 				</div>
 			)}
 			{process.env.NODE_ENV === "development" && (

@@ -12,6 +12,7 @@ const useStore = create(
 			orgInfo: null,
 			breadCrumbs: [],
 			currentHierarchy: null,
+			pageHierarchy: null,
 		})
 	),
 	{ name: "useStore" }
