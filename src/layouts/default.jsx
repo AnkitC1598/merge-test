@@ -147,7 +147,9 @@ const Default = ({ children }) => {
 				}}
 				className="flex flex-col h-full"
 				handleClasses={{
-					right: "hover:bg-neutral-800 active:bg-neutral-800 w-2 right-2 transition-all duration-500 ease-in-out after:content-[''] after:absolute after:top-[calc(50%_-_20px)] after:left-1/2 after:h-5 after:w-1 hover:after:visible active:after:visible after:invisible after:col-resize after:bg-neutral-300 after:rounded after:transform after:translate-x-[-50%] after:translate-y-[-50%] after:shadow after:dark:bg-neutral-700 after:dark:shadow-neutral-700 after:active:bg-neutral-400 after:active:dark:bg-neutral-600 after:active:shadow-neutral-600 after:active:dark:shadow-neutral-600 after:transition-all after:duration-500 after:ease-in-out",
+					right: !sideBarOpen
+						? "hidden"
+						: "hover:bg-neutral-800 active:bg-neutral-800 w-2 right-2 transition-all duration-500 ease-in-out after:content-[''] after:absolute after:top-[calc(50%_-_20px)] after:left-1/2 after:h-5 after:w-1 hover:after:visible active:after:visible after:invisible after:col-resize after:bg-neutral-300 after:rounded after:transform after:translate-x-[-50%] after:translate-y-[-50%] after:shadow after:dark:bg-neutral-700 after:dark:shadow-neutral-700 after:active:bg-neutral-400 after:active:dark:bg-neutral-600 after:active:shadow-neutral-600 after:active:dark:shadow-neutral-600 after:transition-all after:duration-500 after:ease-in-out",
 				}}
 				handleStyles={{
 					right: {
@@ -204,12 +206,12 @@ const Default = ({ children }) => {
 														<div className="flex items-center">
 															<button
 																type="button"
-																className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700"
+																className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700 flex flex-row-reverse items-center gap-1"
 																onClick={
 																	enableFocusMode
 																}
 															>
-																<span className="sr-only">
+																<span className="text-xs">
 																	Focus Mode
 																</span>
 																{sideBarOpen ? (
