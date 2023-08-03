@@ -206,7 +206,7 @@ const Default = ({ children }) => {
 														<div className="flex items-center">
 															<button
 																type="button"
-																className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 p-1 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700 flex flex-row-reverse items-center gap-1"
+																className="rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 py-1 px-2 text-yellow-400 hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 border border-neutral-300 dark:border-neutral-700 flex flex-row-reverse items-center gap-1"
 																onClick={
 																	enableFocusMode
 																}

@@ -5,7 +5,7 @@ const plugin = require("tailwindcss/plugin")
 const SharedTailwindConfigThemeExtend = SharedTailwindConfig.theme.extend
 const ExtendedTheme = {
 	width: {
-		excludeSidebarIcon: "calc(100vw - 62px)",
+		excludeSidebarIcon: "calc(100vw - 56px)",
 	},
 }
 let MergedExtentedTheme = {}
