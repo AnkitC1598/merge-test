@@ -1,12 +1,12 @@
 [submodule "src/submodules/web-core"]
 	path = src/submodules/web-core
 	url = https://github.com/LetsUpgrade-Labs/web-core.git
-	branch = refactor-useDarkMode/Abhishek
+	branch = main
 [submodule "src/submodules/plugins"]
 	path = src/submodules/plugins
 	url = https://github.com/LetsUpgrade-Labs/lisa-plugins.git
-	branch = refactor-handRaise/Ankit
+	branch = main
 [submodule "src/submodules/content"]
 	path = src/submodules/content
 	url = https://github.com/LetsUpgrade-Labs/lisa-content.git
-	branch = add-waitingScreen/Ankit
+	branch = main
