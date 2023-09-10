@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.4.15-beta.1](https://github.com/AnkitC1598/merge-test/compare/v0.4.15-beta.0...v0.4.15-beta.1) (2023-09-10)
+
 ## [0.4.15-beta.0](https://github.com/AnkitC1598/merge-test/compare/v0.4.14...v0.4.15-beta.0) (2023-09-10)
 
 
