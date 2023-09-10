@@ -1,6 +1,6 @@
 {
 	"name": "lisa-student",
-	"version": "0.4.15-rc.0",
+	"version": "0.4.15",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
