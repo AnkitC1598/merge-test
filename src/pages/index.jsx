@@ -1,3 +1,5 @@
+// 1
+
 import Head from "next/head"
 import { useEffect } from "react"
 import Loading from "~/components/atoms/Loading"
