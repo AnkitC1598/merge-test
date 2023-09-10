@@ -1,5 +1,67 @@
 # Changelog
 
+## [0.4.15-beta.0](https://github.com/AnkitC1598/merge-test/compare/v0.4.14...v0.4.15-beta.0) (2023-09-10)
+
+
+### * Chores
+
+* minor jsx changes for svg ([526146f](https://github.com/AnkitC1598/merge-test/commit/526146f5f4d422dc0771f4f3d6a21b7faa856cb3))
+
+
+### :recycle: Code Refactoring
+
+* refactored cohorts cards styles and added loaders in app ([edbc28b](https://github.com/AnkitC1598/merge-test/commit/edbc28b8a02c7c851117e814a10b3087d591306b))
+* seo title setup refactored ([f364aa7](https://github.com/AnkitC1598/merge-test/commit/f364aa7bfac0a1ac61d5a9e66b61f6cd274d3818))
+
+
+### 🎨 Styles
+
+* cards styles changed for session card on index page ([de69dd1](https://github.com/AnkitC1598/merge-test/commit/de69dd10c28073d9f56abe22624fd2b2bf3036ae))
+* color theme for recorded cards changed to sky ([e0ee984](https://github.com/AnkitC1598/merge-test/commit/e0ee98455e8c91ded6145d162f88335a3b3126e1))
+* handle made hidden if sidebar is closed and added focus mode tag ([308a733](https://github.com/AnkitC1598/merge-test/commit/308a733b00816ab0a2f2a331ea94e989129ff269))
+* session card icon opacity updated ([e7d2718](https://github.com/AnkitC1598/merge-test/commit/e7d2718eb4885635eabfb49da2e1b15cc8389353))
+* **sticky bradcrumbs:** style for bradcrumbs changed to make them sticky ([eac75c4](https://github.com/AnkitC1598/merge-test/commit/eac75c462ec08f5e5fae42a77d45cd6ade4a36a1))
+
+
+### ⬆️ Packages Upgrades
+
+* **content:** content submodule upgraded ([f79a7d3](https://github.com/AnkitC1598/merge-test/commit/f79a7d3137053f5c9d14c3ae3dabcfb695a88d58))
+* **content:** content submodule upgraded ([1236670](https://github.com/AnkitC1598/merge-test/commit/12366701d569c883a78bd5754de2893bbad270c4))
+* **content:** content submodule upgraded ([b1d179c](https://github.com/AnkitC1598/merge-test/commit/b1d179c6994d50a413fabebe6f8d5f3287fe023b))
+* **content:** content submodule upgraded w/ required change ([3bd393d](https://github.com/AnkitC1598/merge-test/commit/3bd393d445c585bec65f773a1881121a72f85313))
+* **content:** content submodules upgraded ([023d1b5](https://github.com/AnkitC1598/merge-test/commit/023d1b5e9d1c3ab99e206e196c1d973ddf12c3be))
+* **packages:** packages upgraded ([8552967](https://github.com/AnkitC1598/merge-test/commit/855296798d3469d90bc43f98d5ef6514003f9c4e))
+* **plugins:** plugins submodule upgraded ([2681ed8](https://github.com/AnkitC1598/merge-test/commit/2681ed8a3875e5d46937f970385f9bdeffb3688f))
+* **plugins:** plugins submodule upgraded ([628a857](https://github.com/AnkitC1598/merge-test/commit/628a8576843501af20a3a963b67e53c9b19230b2))
+* **plugins:** plugins submodule upgraded ([9dd0331](https://github.com/AnkitC1598/merge-test/commit/9dd03313f02824c0b7ef9a9a43c4302ffb47f203))
+* **plugins:** plugins submodule upgraded ([72680bb](https://github.com/AnkitC1598/merge-test/commit/72680bb8fa696cd37b4de403790b06b87ea0fad0))
+* **plugins:** plugins submodule upgraded ([46f7b53](https://github.com/AnkitC1598/merge-test/commit/46f7b539cc33c64e37dd2b44b03806c337195d9c))
+* **plugins:** plugins submodule upgraded & missing module installed ([753dbec](https://github.com/AnkitC1598/merge-test/commit/753dbec6b7b6f1421106c9a7ea155c89313749ec))
+* **plugins:** plugins submodule upgraded w/ required changes ([9759645](https://github.com/AnkitC1598/merge-test/commit/9759645ecdbc48ef6071f14b4d3f27bd2adcf782))
+* **submodules:** plugins & content submodules upgraded ([de6da81](https://github.com/AnkitC1598/merge-test/commit/de6da81819aa2cfc629d0d26ad5d1e7a29cc2cd5))
+* **submodules:** plugins & content submodules upgraded ([71ba964](https://github.com/AnkitC1598/merge-test/commit/71ba96473dec3b69e92adb6228c3159a81ce4200))
+* **submodules:** plugins & content submodules upgraded ([7709984](https://github.com/AnkitC1598/merge-test/commit/7709984fdbd6be745064d3752d8c0c591d27e981))
+* **submodules:** plugins & content submodules upgraded w/ required changes ([744e3df](https://github.com/AnkitC1598/merge-test/commit/744e3df03828d41578505ff0d7858040a6a11c79))
+
+
+### :heavy_plus_sign: Add
+
+* missing package installed ([91eb480](https://github.com/AnkitC1598/merge-test/commit/91eb480a56140b528e6daf6e844bad24ea1e4b25))
+* **seo:** seo titles added in student panel ([989c015](https://github.com/AnkitC1598/merge-test/commit/989c015da7329e285c584c5f13d9a69f17c59ece))
+* strategy ([9a87dc4](https://github.com/AnkitC1598/merge-test/commit/9a87dc4aba5e151d3fb460f8432b84680abe07c2))
+
+
+### 🐛 Bug Fixes
+
+* br up ([0055f21](https://github.com/AnkitC1598/merge-test/commit/0055f21dea603d5b031ec1b04fab3f47be4a83fa))
+* br up ([2f474cb](https://github.com/AnkitC1598/merge-test/commit/2f474cbc2a8cbdb502d973a592b27fc03710ec4c))
+* br up ([681aecb](https://github.com/AnkitC1598/merge-test/commit/681aecbcfc8cbdd8848fff662a06d824e039e6b7))
+* leave meeting & handRaise sockets on session exit ([8c3f26f](https://github.com/AnkitC1598/merge-test/commit/8c3f26f425ada1eb6595f3cbf9c77e93a4159e44))
+* minor code fixes ([94feda9](https://github.com/AnkitC1598/merge-test/commit/94feda9c9311fedc837a514a51f1989c65ba2b64))
+* status visibility conditional logic fixed in session card ([4e9cca4](https://github.com/AnkitC1598/merge-test/commit/4e9cca4876a54ba2083a1dacb798498f30fda67e))
+* strat ([c9b769d](https://github.com/AnkitC1598/merge-test/commit/c9b769d45876a10059012d0208467663d9361002))
+* temp ([e4ff907](https://github.com/AnkitC1598/merge-test/commit/e4ff90730af9e0ee60dff77c1caab40083bf1a79))
+
 ## [0.4.14](https://github.com/LetsUpgrade-Labs/lisa-student/compare/v0.4.13...v0.4.14) (2023-07-19)
 
 
