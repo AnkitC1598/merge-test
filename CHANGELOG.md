@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.16-beta.1](https://github.com/AnkitC1598/merge-test/compare/v0.4.16-beta.0...v0.4.16-beta.1) (2023-09-10)
+
+
+### * Chores
+
+* release v0.4.16-beta.0 ([347b901](https://github.com/AnkitC1598/merge-test/commit/347b90199d1e86625dfad57c12dc9650930a8b2e))
+
+
+### 🐛 Bug Fixes
+
+* 3 ([f4515e0](https://github.com/AnkitC1598/merge-test/commit/f4515e0885ddb5d18685070288433a6c6dc4fd4f))
+* 4 ([a7e64b9](https://github.com/AnkitC1598/merge-test/commit/a7e64b96dba1ac4c20c6710894f6ca6f33b837b6))
+
 ## [0.4.15](https://github.com/AnkitC1598/merge-test/compare/v0.4.15-rc.0...v0.4.15) (2023-09-10)
 
 ## [0.4.15-rc.0](https://github.com/AnkitC1598/merge-test/compare/v0.4.15-beta.1...v0.4.15-rc.0) (2023-09-10)
