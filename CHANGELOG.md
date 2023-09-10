@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.16-rc.1](https://github.com/AnkitC1598/merge-test/compare/v0.4.16-rc.0...v0.4.16-rc.1) (2023-09-10)
+
+
+### 🐛 Bug Fixes
+
+* 7 ([915fb68](https://github.com/AnkitC1598/merge-test/commit/915fb68e4a107b2c93358b1c010601c031a24ce1))
+* 8 ([471bde6](https://github.com/AnkitC1598/merge-test/commit/471bde63a549e3b9fe9c8b85abd1b00d410d2d54))
+
 ## [0.4.16-rc.0](https://github.com/AnkitC1598/merge-test/compare/v0.4.16-beta.1...v0.4.16-rc.0) (2023-09-10)
 
 
