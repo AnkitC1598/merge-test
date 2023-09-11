@@ -3,8 +3,7 @@
 		"commit": true,
 		"commitMessage": "chore: release v${version}",
 		"tag": true,
-		"tagName": "v${version}",
-		"tagMatch": "[0-9]*\\.[0-9]*\\.[0-9]*"
+		"tagName": "v${version}"
 	},
 	"npm": {
 		"publish": false
