@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.17-rc.0](https://github.com/AnkitC1598/merge-test/compare/v0.4.17-beta.1...v0.4.17-rc.0) (2023-09-11)
+
+
+### 🐛 Bug Fixes
+
+* 13 ([40ecc27](https://github.com/AnkitC1598/merge-test/commit/40ecc27857cc8a90d651b37c6aa6d398d899eced))
+* 14 ([0008794](https://github.com/AnkitC1598/merge-test/commit/00087946ba47e55d7319c0c3ccea4ffbb39971dd))
+* 15 ([e3a4061](https://github.com/AnkitC1598/merge-test/commit/e3a40613ff4f6b512efa6ecf9e2884b23b435635))
+* 16 ([bc10f80](https://github.com/AnkitC1598/merge-test/commit/bc10f80622f898ae0dab2bff2bca052985d6e9fe))
+* 17 ([21a2c56](https://github.com/AnkitC1598/merge-test/commit/21a2c56bae3905c25f5fb71d54b0c683bc2c5e0c))
+* 18 ([b496fe7](https://github.com/AnkitC1598/merge-test/commit/b496fe70406c233f097439acacf9960cf5a144c3))
+* 19 ([2aa6465](https://github.com/AnkitC1598/merge-test/commit/2aa646594a6b49ee55709547dde77816960fbc92))
+* temp ([a109445](https://github.com/AnkitC1598/merge-test/commit/a109445cc1df47881c3ae5881391f7cdc2e72bd4))
+
 ## [0.4.17-beta.1](https://github.com/AnkitC1598/merge-test/compare/v0.4.17-beta.0...v0.4.17-beta.1) (2023-09-10)
 
 
