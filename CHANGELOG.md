@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.17](https://github.com/AnkitC1598/merge-test/compare/v0.4.17-beta.1...v0.4.17) (2023-09-11)
+
+
+### 🐛 Bug Fixes
+
+* temp ([a109445](https://github.com/AnkitC1598/merge-test/commit/a109445cc1df47881c3ae5881391f7cdc2e72bd4))
+
 ## [0.4.17-beta.1](https://github.com/AnkitC1598/merge-test/compare/v0.4.17-beta.0...v0.4.17-beta.1) (2023-09-10)
 
 
